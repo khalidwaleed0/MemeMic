@@ -27,5 +27,15 @@ namespace MemeMic
         {
 
         }
+
+        private void PushToTalkRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            DiscordGrid.Visibility = Visibility.Visible;
+        }
+
+        private void VoiceActivityRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            DiscordGrid.Visibility = Visibility.Hidden;
+        }
     }
 }

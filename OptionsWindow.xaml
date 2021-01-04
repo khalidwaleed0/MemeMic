@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MemeMic"
         mc:Ignorable="d"
-        Title="Options" Height="270" Width="550">
+        Title="Options" Height="270" Width="550" WindowStartupLocation="CenterScreen">
     <Border Margin="10">
         <StackPanel>
             <Grid>
@@ -43,10 +43,10 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <RadioButton x:Name="VoiceActivityRadioButton" Content="Voice Activity" Grid.Column="0"/>
-                <RadioButton x:Name="PushToTalkRadioButton" Content="Push to talk" Grid.Column="1"/>
+                <RadioButton x:Name="VoiceActivityRadioButton" Content="Voice Activity" Grid.Column="0" Checked="VoiceActivityRadioButton_Checked"/>
+                <RadioButton x:Name="PushToTalkRadioButton" Content="Push to talk" Grid.Column="1" Checked="PushToTalkRadioButton_Checked"/>
             </Grid>
-            <Grid Margin="0 10 0 0">
+            <Grid x:Name="DiscordGrid" Margin="0 10 0 0" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>

@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
+using System.Threading;
+
 namespace MemeMic
 {
     /// <summary>
@@ -25,18 +27,31 @@ namespace MemeMic
         WaveOutEvent player = new WaveOutEvent();
         public MainWindow()
         {
-
             InitializeComponent();
         }
-        
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
             player.Dispose();
             MediaFoundationReader reader = new MediaFoundationReader(@"F:\memes\Videos\يلعن ميتين أبوكوا.mp4");
             player.Init(reader);
             player.Play();
+        }
+
+        private void OptionsButton_Click(object sender, RoutedEventArgs e)
+        {
+            OptionsWindow optionsWindow = new OptionsWindow();
+            optionsWindow.ShowDialog();
+        }
+
+        private void DownloadMemesButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.google.com");          // opens in a different process
+        }
+
+        private void BrowseButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
