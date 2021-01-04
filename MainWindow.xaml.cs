@@ -28,21 +28,7 @@ namespace MemeMic
 
             InitializeComponent();
         }
-        public static void checkDirectory()
-        {
-            if (!Directory.Exists(@"D:\MemeMic Memes"))
-            {
-                Directory.CreateDirectory(@"D:\MemeMic Memes");
-                System.Windows.MessageBox.Show("Please move all of your memes in \"MemeMic Memes\" Directory \n You will find it in your D:/");
-            }
-            else
-            {
-                string[] arr = Directory.GetFiles(@"D:\MemeMic Memes", "*.mp3");
-                foreach (string file in arr)
-                {
-                    System.Windows.MessageBox.Show(file);
-                }
-            }
+        
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
