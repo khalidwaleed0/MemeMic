@@ -44,6 +44,7 @@ namespace MemeMic
         {
             OptionsWindow optionsWindow = new OptionsWindow();
             optionsWindow.ShowDialog();
+
         }
 
         private void DownloadMemesButton_Click(object sender, RoutedEventArgs e)
