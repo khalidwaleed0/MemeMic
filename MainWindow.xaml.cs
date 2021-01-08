@@ -25,8 +25,10 @@ namespace MemeMic
     public partial class MainWindow : Window
     {
         WaveOutEvent player = new WaveOutEvent();
+        OverlayWindow overlay = new OverlayWindow();
         public MainWindow()
         {
+            Task.Delay(10000);
             InitializeComponent();
         }
 
@@ -46,12 +48,13 @@ namespace MemeMic
 
         private void DownloadMemesButton_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.google.com");          // opens in a different process
+            overlay.Show();
+            //System.Diagnostics.Process.Start("http://www.google.com");          // opens in a different process
         }
 
         private void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }
