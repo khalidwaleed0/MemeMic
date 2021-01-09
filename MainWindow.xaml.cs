@@ -47,10 +47,10 @@ namespace MemeMic
 
         }
 
-        private void DownloadMemesButton_Click(object sender, RoutedEventArgs e)
+        private void MemeDataBaseButton_Click(object sender, RoutedEventArgs e)
         {
-            overlay.Show();
-            //System.Diagnostics.Process.Start("http://www.google.com");          // opens in a different process
+            DataBaseDialog databaseDialog = new DataBaseDialog();
+            databaseDialog.ShowDialog();
         }
 
         private void BrowseButton_Click(object sender, RoutedEventArgs e)

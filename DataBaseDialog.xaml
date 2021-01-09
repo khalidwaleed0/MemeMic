@@ -1,0 +1,36 @@
+﻿<Window x:Class="MemeMic.DataBaseDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MemeMic"
+        mc:Ignorable="d"
+        Title="MemeMic" Height="170" Width="380" WindowStartupLocation="CenterScreen">
+    <Border Margin="10">
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.7*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="MemeMic DataBase" Grid.Column="0" Click="MemeMicButton_Click"/>
+                <TextBlock Text="Our favourite memes" FontWeight="Medium" Grid.Column="1" Margin="10 0 0 0"/>
+            </Grid>
+            <Grid Margin="0 50 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.7*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Community DataBase" Grid.Column="0" Click="CommunityButton_Click"/>
+                <TextBlock Text="our Community favourite memes." FontWeight="Medium" Grid.Column="1" Margin="10 0 0 0"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.87*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Feel free to add your memes" FontWeight="Medium" Grid.Column="1"/>
+            </Grid>
+        </StackPanel>
+    </Border>
+</Window>
