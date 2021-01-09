@@ -25,7 +25,22 @@ namespace MemeMic
         public KeyboardWatcher keyboardWatcher;
         public MouseWatcher mouseWatcher;
 
-        public void captureKeyboardEvent(TextBox textBox)
+        public void createKeyboardEvent(TextBox textBox)
+        {
+            keyboardWatcher = eventHookFactory.GetKeyboardWatcher();
+            keyboardWatcher.Start();
+            keyboardWatcher.OnKeyInput += (s, e) =>
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    textBox.Text = e.KeyData.Keyname;
+                });
+                mouseWatcher.Stop();
+                keyboardWatcher.Stop();
+                //eventHookFactory.Dispose();
+            };
+        }
+/*        public void createKeyboardEvent()
         {
             keyboardWatcher = eventHookFactory.GetKeyboardWatcher();
             keyboardWatcher.Start();
@@ -37,7 +52,7 @@ namespace MemeMic
                 }
                 );
             };
-        }
+        }*/
         public void captureMouseEvent(TextBox textbox)
         {
             mouseWatcher = eventHookFactory.GetMouseWatcher();
@@ -45,21 +60,34 @@ namespace MemeMic
 
             mouseWatcher.OnMouseInput += (s, e) =>
             {
-                this.Dispatcher.Invoke(() =>
+
+                String mouseEvent = e.Message.ToString();
+                if (!mouseEvent.Equals("WM_MOUSEMOVE"))
                 {
-                    String mouseEvent = e.Message.ToString();
-                    if (!mouseEvent.Equals("WM_MOUSEMOVE"))
+                    this.Dispatcher.Invoke(() =>
                     {
-                        textbox.Text = e.Message.ToString();
-                    }
-
-
+                        textbox.Text = e.MouseData.ToString();
+                    });
+                    
+                    keyboardWatcher.Stop();
+                    mouseWatcher.Stop();
+                    //eventHookFactory.Dispose();
                 }
-                );
             };
         }
-
-
+/*        ~EventListener()
+        {
+            keyboardWatcher.Stop();
+            mouseWatcher.Stop();
+            eventHookFactory.Dispose();
+        }*/
+        public void closeListener()
+        {
+            keyboardWatcher.Stop();
+            mouseWatcher.Stop();
+            //            eventHookFactory.Dispose();
+            eventHookFactory.Dispose();
+        }
 
 
 

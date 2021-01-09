@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MemeMic"
         mc:Ignorable="d"
-        Title="Options" Height="270" Width="550" WindowStartupLocation="CenterScreen">
+        Title="Options" Height="270" Width="550" WindowStartupLocation="CenterScreen" MouseDown="onMouseDown" KeyDown="onKeyboardDown" Closed="onDispose">
     <Border Margin="10">
         <StackPanel>
             <Grid>
@@ -15,8 +15,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Show Overlay Button" Grid.Column="0" FontWeight="Bold"/>
-                <TextBox x:Name="ShowOverlayTextBox" Grid.Column="1"/>
-                <Button x:Name="ShowOverlayButton" Click="ShowOverlayButton_Click" Content="Listen" Grid.Column="2" Margin="10 0 0 0"/>
+                <TextBox x:Name="ShowOverlayTextBox" Grid.Column="1" IsReadOnly="true" Focusable="False"/>
+                <Button x:Name="OverlayListenButton" Click="OverlayListenButton_Click" Content="Listen" Grid.Column="2" Margin="10 0 0 0"/>
             </Grid>
             <Grid Margin="0 10 0 0">
                 <Grid.ColumnDefinitions>
@@ -25,7 +25,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Play the selected meme" Grid.Column="0" FontWeight="Bold"/>
-                <TextBox x:Name="PlayMemeTextBox" Text="" IsReadOnly="True" Grid.Column="1"/>
+                <TextBox x:Name="PlayMemeTextBox" Text="" IsReadOnly="True" Focusable="False" Grid.Column="1"/>
             </Grid>
             <Grid Margin="0 10 0 0">
                 <Grid.ColumnDefinitions>
@@ -34,7 +34,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Meme list scroll" Grid.Column="0" FontWeight="Bold"/>
-                <TextBox Text="Mouse Scroll Wheel" IsReadOnly="True" Grid.Column="1"/>
+                <TextBox Text="Mouse Scroll Wheel" IsReadOnly="True" Focusable="False" Grid.Column="1"/>
             </Grid>
             <TextBlock Text="What voice option do you use in discord ?" FontWeight="Bold" Margin="0 50 0 0"/>
             <Grid Margin="0 10 0 0">
@@ -54,7 +54,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Push to talk button in discord" FontWeight="Bold" Grid.Column="0"/>
                 <TextBox x:Name="DiscordKeyTextBox" Grid.Column="1"/>
-                <Button x:Name="DiscordKeyButton" Content="Listen" Grid.Column="2" Margin="10 0 0 0"/>
+                <Button x:Name="DiscordKeyButton" Click="DiscordKeyButton_Click" Content="Listen" Grid.Column="2" Margin="10 0 0 0"/>
             </Grid>
         </StackPanel>
     </Border>

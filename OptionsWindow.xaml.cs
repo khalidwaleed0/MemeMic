@@ -19,23 +19,63 @@ namespace MemeMic
     /// </summary>
     public partial class OptionsWindow : Window
     {
+        bool isOverlayButtonClicked = false;
+        bool isDiscordButtonClicked = false;
         public OptionsWindow()
         {
             InitializeComponent();
         }
-        private void ShowOverlayButton_Click(object sender, RoutedEventArgs e)
+        private void OverlayListenButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ShowOverlayTextBox.Text = "Recording..";
+            PlayMemeTextBox.Text = "Recording..";
+            isOverlayButtonClicked = true;
         }
-
         private void PushToTalkRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             DiscordGrid.Visibility = Visibility.Visible;
         }
-
         private void VoiceActivityRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             DiscordGrid.Visibility = Visibility.Hidden;
+        }
+        private void DiscordKeyButton_Click(object sender, RoutedEventArgs e)
+        {
+            DiscordKeyTextBox.Text = "Recording..";
+            isDiscordButtonClicked = true;
+        }
+        private void onMouseDown(object sender, MouseButtonEventArgs e)
+        {                               // the event is running all the time but we only need to get the pressed key after
+            if (isOverlayButtonClicked) // the listen button is pressed
+            {
+                ShowOverlayTextBox.Text = e.ChangedButton.ToString();
+                PlayMemeTextBox.Text = e.ChangedButton.ToString();
+                isOverlayButtonClicked = false;
+            }
+            else if(isDiscordButtonClicked)
+            {
+                DiscordKeyTextBox.Text = e.ChangedButton.ToString();
+                isDiscordButtonClicked = false;
+            }
+        }
+        private void onKeyboardDown(object sender, KeyEventArgs e)
+        {
+            if(isOverlayButtonClicked)  // the event is running all the time but we only need to get the pressed key after
+            {                           // the listen button is pressed
+                ShowOverlayTextBox.Text = e.Key.ToString();
+                PlayMemeTextBox.Text = e.Key.ToString();
+                isOverlayButtonClicked = false;
+            }
+            else if(isDiscordButtonClicked)
+            {
+                DiscordKeyTextBox.Text = e.Key.ToString();
+                isDiscordButtonClicked = false;
+            }
+        }
+        private void onDispose(object sender, EventArgs e)
+        {
+            AppSetup.modifyButtons(ShowOverlayTextBox.Text, DiscordKeyTextBox.Text);
+            Close();
         }
     }
 }

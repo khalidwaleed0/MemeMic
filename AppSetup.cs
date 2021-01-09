@@ -34,6 +34,9 @@ namespace MemeMic
         {
             createSettingsFile(newPath, readSettingsFile(overlayButtonLine), readSettingsFile(pushToTalkLine));
         }
-
+        public static void modifyButtons(string overlayButton, string discordButton)
+        {
+            createSettingsFile(readSettingsFile(pathLine), overlayButton, discordButton);
+        }
     }
 }
