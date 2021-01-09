@@ -11,11 +11,12 @@ namespace MemeMic
 {
     public static class AppSetup
     {
+        public static List<string> filteredMemeFiles = new List<string>();
         public const byte pathLine = 0;
         public const byte overlayButtonLine = 1;
         public const byte pushToTalkLine = 2;
         public static string settingsFilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Local\MemeMic\settings.txt";
-        public static void createSettingsFile(string path, string overlayButton = "", string pushToTalkButton = "")
+        public static void createSettingsFile(string path = "", string overlayButton = "", string pushToTalkButton = "")
         {
             TextWriter writer = new StreamWriter(settingsFilePath);
             writer.WriteLine(path + "," + overlayButton + "," + pushToTalkButton);
@@ -37,6 +38,15 @@ namespace MemeMic
         public static void modifyButtons(string overlayButton, string discordButton)
         {
             createSettingsFile(readSettingsFile(pathLine), overlayButton, discordButton);
+        }
+        public static void filterMemeFiles()
+        {
+            string supportedExtensions = "*.mp3,*.aac,*.wav,*.webm,*.m4a,*.mp4,*.mkv";
+            string[] memeFiles = Directory.GetFiles(readSettingsFile(pathLine), "");
+            foreach (string supportedMemeFile in memeFiles.Where(s => supportedExtensions.Contains(System.IO.Path.GetExtension(s).ToLower())))
+            {
+                filteredMemeFiles.Add(supportedMemeFile);
+            }
         }
     }
 }

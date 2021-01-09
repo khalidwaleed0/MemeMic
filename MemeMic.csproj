@@ -99,6 +99,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MemePlayer.cs" />
     <Compile Include="OptionsWindow.xaml.cs">
       <DependentUpon>OptionsWindow.xaml</DependentUpon>
     </Compile>

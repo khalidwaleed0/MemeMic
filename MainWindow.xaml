@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MemeMic"
         mc:Ignorable="d"
-        Title="MemeMic" Height="250" Width="500" WindowStartupLocation="CenterScreen">
+        Title="MemeMic" Height="250" Width="500"  WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="D:\test.jpg" Stretch="Fill" />
+    </Window.Background>
     <Border Margin="10">
         <StackPanel>
             <Grid>

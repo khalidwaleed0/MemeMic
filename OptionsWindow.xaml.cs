@@ -51,6 +51,7 @@ namespace MemeMic
         {
             try
             {
+                DiscordKeyTextBox.Text = "";
                 DiscordGrid.Visibility = Visibility.Hidden;
             }
             catch(NullReferenceException ex)
@@ -94,8 +95,6 @@ namespace MemeMic
         }
         private void onDispose(object sender, EventArgs e)
         {
-            if (DiscordKeyTextBox.Text.Equals(""))
-                System.Windows.Forms.MessageBox.Show("hi");
             AppSetup.modifyButtons(ShowOverlayTextBox.Text, DiscordKeyTextBox.Text);
             Close();
         }

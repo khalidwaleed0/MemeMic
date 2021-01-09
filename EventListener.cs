@@ -25,53 +25,25 @@ namespace MemeMic
         public KeyboardWatcher keyboardWatcher;
         public MouseWatcher mouseWatcher;
 
-        public void createKeyboardEvent(TextBox textBox)
+        public void captureKeyboardEvent()
         {
             keyboardWatcher = eventHookFactory.GetKeyboardWatcher();
             keyboardWatcher.Start();
             keyboardWatcher.OnKeyInput += (s, e) =>
             {
-                this.Dispatcher.Invoke(() =>
-                {
-                    textBox.Text = e.KeyData.Keyname;
-                });
-                mouseWatcher.Stop();
-                keyboardWatcher.Stop();
-                //eventHookFactory.Dispose();
+                
             };
         }
-/*        public void createKeyboardEvent()
-        {
-            keyboardWatcher = eventHookFactory.GetKeyboardWatcher();
-            keyboardWatcher.Start();
-            keyboardWatcher.OnKeyInput += (s, e) =>
-            {
-                this.Dispatcher.Invoke(() =>
-                {
-                    textBox.Text = e.KeyData.Keyname;
-                }
-                );
-            };
-        }*/
-        public void captureMouseEvent(TextBox textbox)
+        public void captureMouseEvent()
         {
             mouseWatcher = eventHookFactory.GetMouseWatcher();
             mouseWatcher.Start();
-
             mouseWatcher.OnMouseInput += (s, e) =>
             {
-
                 String mouseEvent = e.Message.ToString();
                 if (!mouseEvent.Equals("WM_MOUSEMOVE"))
                 {
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        textbox.Text = e.MouseData.ToString();
-                    });
                     
-                    keyboardWatcher.Stop();
-                    mouseWatcher.Stop();
-                    //eventHookFactory.Dispose();
                 }
             };
         }

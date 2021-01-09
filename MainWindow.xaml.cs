@@ -24,7 +24,6 @@ namespace MemeMic
     /// </summary>
     public partial class MainWindow : Window
     {
-        WaveOutEvent player = new WaveOutEvent();
         OverlayWindow overlay = new OverlayWindow();
         public MainWindow()
         {
@@ -34,10 +33,31 @@ namespace MemeMic
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            player.Dispose();
-            MediaFoundationReader reader = new MediaFoundationReader(@"F:\memes\Videos\يلعن ميتين أبوكوا.mp4");
-            player.Init(reader);
-            player.Play();
+            if (AppSetup.readSettingsFile(AppSetup.pathLine).Equals("") || AppSetup.readSettingsFile(AppSetup.overlayButtonLine).Equals(""))
+            {
+                System.Windows.Forms.MessageBox.Show("Make sure to choose the folder meme\nand the overlay button"
+                    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                AppSetup.filterMemeFiles();
+                if(AppSetup.filteredMemeFiles.Count == 0)
+                {
+                    System.Windows.Forms.MessageBox.Show("The selected folder meme does not contain any valid memes" +
+                        "\nSupported Extensions: .mp3,.aac,.wav,.webm,.m4a,.mp4,.mkv"
+                    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    Close();
+                    EventListener listener = new EventListener();
+                    string overlayButton = AppSetup.readSettingsFile(AppSetup.overlayButtonLine);
+                    if (overlayButton.Contains("XButton") || overlayButton.Equals("Middle"))
+                        listener.captureMouseEvent();
+                    else
+                        listener.captureKeyboardEvent();
+                }
+            }
         }
 
         private void OptionsButton_Click(object sender, RoutedEventArgs e)
@@ -56,24 +76,17 @@ namespace MemeMic
         private void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
             var folderDialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
-            folderDialog.ShowDialog();
-            DirectoryTextBox.Text = folderDialog.SelectedPath;
-            if (!File.Exists(AppSetup.settingsFilePath))
-                AppSetup.createSettingsFile(folderDialog.SelectedPath);
-            else
+            bool isFolderSelected = (bool)folderDialog.ShowDialog();
+            if(isFolderSelected)
             {
+                DirectoryTextBox.Text = folderDialog.SelectedPath;
                 AppSetup.modifyFolderPath(folderDialog.SelectedPath);
             }
-            try
-            {
-                string[] filePaths = Directory.GetFiles(folderDialog.SelectedPath);
-            }
-            catch(Exception ex)
+            else
             {
                 System.Windows.Forms.MessageBox.Show("Please choose a directory", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
     }
 }
