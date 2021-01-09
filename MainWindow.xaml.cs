@@ -29,7 +29,7 @@ namespace MemeMic
         public MainWindow()
         {
             InitializeComponent();
-            
+            DirectoryTextBox.Text = AppSetup.readSettingsFile(AppSetup.pathLine);
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)

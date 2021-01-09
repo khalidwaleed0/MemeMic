@@ -24,6 +24,7 @@ namespace MemeMic
         public OptionsWindow()
         {
             InitializeComponent();
+            displayLatestSettings();
         }
         private void OverlayListenButton_Click(object sender, RoutedEventArgs e)
         {
@@ -31,13 +32,32 @@ namespace MemeMic
             PlayMemeTextBox.Text = "Recording..";
             isOverlayButtonClicked = true;
         }
+        private void displayLatestSettings()
+        {
+            ShowOverlayTextBox.Text = AppSetup.readSettingsFile(AppSetup.overlayButtonLine);
+            PlayMemeTextBox.Text = AppSetup.readSettingsFile(AppSetup.overlayButtonLine);
+            string pushToTalkButton = AppSetup.readSettingsFile(AppSetup.pushToTalkLine);
+            if (!pushToTalkButton.Equals(""))
+            {
+                PushToTalkRadioButton.IsChecked = true;
+                DiscordKeyTextBox.Text = pushToTalkButton;
+            }
+        }
         private void PushToTalkRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             DiscordGrid.Visibility = Visibility.Visible;
         }
         private void VoiceActivityRadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            DiscordGrid.Visibility = Visibility.Hidden;
+            try
+            {
+                DiscordGrid.Visibility = Visibility.Hidden;
+            }
+            catch(NullReferenceException ex)
+            {
+                ex.ToString();
+            }
+            
         }
         private void DiscordKeyButton_Click(object sender, RoutedEventArgs e)
         {
@@ -74,6 +94,8 @@ namespace MemeMic
         }
         private void onDispose(object sender, EventArgs e)
         {
+            if (DiscordKeyTextBox.Text.Equals(""))
+                System.Windows.Forms.MessageBox.Show("hi");
             AppSetup.modifyButtons(ShowOverlayTextBox.Text, DiscordKeyTextBox.Text);
             Close();
         }

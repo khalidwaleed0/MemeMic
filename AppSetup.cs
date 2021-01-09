@@ -11,9 +11,9 @@ namespace MemeMic
 {
     public static class AppSetup
     {
-        const byte pathLine = 0;
-        const byte overlayButtonLine = 1;
-        const byte pushToTalkLine = 2;
+        public const byte pathLine = 0;
+        public const byte overlayButtonLine = 1;
+        public const byte pushToTalkLine = 2;
         public static string settingsFilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Local\MemeMic\settings.txt";
         public static void createSettingsFile(string path, string overlayButton = "", string pushToTalkButton = "")
         {

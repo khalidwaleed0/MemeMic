@@ -22,12 +22,12 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2.1*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button Content="Start" Grid.Column="0" Click="StartButton_Click"/>
-                <Button Content="Upload / Download Memes" Grid.Column="2" Click="MemeDataBaseButton_Click"/>
+                <Button Content="Upload / Download Memes" FontWeight="Bold" Grid.Column="2" Click="MemeDataBaseButton_Click"/>
                 <Button Content="Options" Grid.Column="4" Click="OptionsButton_Click"/>
             </Grid>
         </StackPanel>

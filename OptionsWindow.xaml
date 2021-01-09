@@ -43,7 +43,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <RadioButton x:Name="VoiceActivityRadioButton" Content="Voice Activity" Grid.Column="0" Checked="VoiceActivityRadioButton_Checked"/>
+                <RadioButton x:Name="VoiceActivityRadioButton" Content="Voice Activity" Grid.Column="0" IsChecked="True" Checked="VoiceActivityRadioButton_Checked"/>
                 <RadioButton x:Name="PushToTalkRadioButton" Content="Push to talk" Grid.Column="1" Checked="PushToTalkRadioButton_Checked"/>
             </Grid>
             <Grid x:Name="DiscordGrid" Margin="0 10 0 0" Visibility="Hidden">
