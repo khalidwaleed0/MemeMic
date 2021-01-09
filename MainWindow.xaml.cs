@@ -28,8 +28,8 @@ namespace MemeMic
         OverlayWindow overlay = new OverlayWindow();
         public MainWindow()
         {
-            Task.Delay(10000);
             InitializeComponent();
+            
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
@@ -55,7 +55,25 @@ namespace MemeMic
 
         private void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            var folderDialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
+            folderDialog.ShowDialog();
+            DirectoryTextBox.Text = folderDialog.SelectedPath;
+            if (!File.Exists(AppSetup.settingsFilePath))
+                AppSetup.createSettingsFile(folderDialog.SelectedPath);
+            else
+            {
+                AppSetup.modifyFolderPath(folderDialog.SelectedPath);
+            }
+            try
+            {
+                string[] filePaths = Directory.GetFiles(folderDialog.SelectedPath);
+            }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Please choose a directory", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }

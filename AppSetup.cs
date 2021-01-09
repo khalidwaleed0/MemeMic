@@ -9,22 +9,29 @@ using System.Windows.Forms;
 
 namespace MemeMic
 {
-    class AppSetup
+    
+    public static class AppSetup
     {
-        public static void createText(string path)
+        public static string settingsFilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Local\MemeMic\settings.txt";
+        public static void createSettingsFile(string path, string overlayButton = "", string pushToTalkButton = "")
         {
-            TextWriter writer = new StreamWriter("path.txt");
-            writer.WriteLine(path);
+            TextWriter writer = new StreamWriter(settingsFilePath);
+            writer.WriteLine(path + "," + overlayButton + "," + pushToTalkButton);
             writer.Close();
-
         }
 
-        public static void readText()
+        public static string readSettingsFile(int lineNumber)
         {
-            TextReader reader = new StreamReader("path.txt");
-
-            //    MessageBox.Show(reader.ReadToEnd());
+            TextReader reader = new StreamReader(settingsFilePath);
+            string settingsLine = reader.ReadLine();
             reader.Close();
+            string[] separatedLines = settingsLine.Split(',');
+            return separatedLines[lineNumber];
         }
+        public static void modifyFolderPath(string newPath)
+        {
+            createSettingsFile(newPath, readSettingsFile(1), readSettingsFile(2));
+        }
+
     }
 }

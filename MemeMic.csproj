@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EventHook, Version=1.4.113.0, Culture=neutral, PublicKeyToken=2c14189d5ed28bd7, processorArchitecture=MSIL">
-      <HintPath>packages\EventHook.1.4.113\lib\net45\EventHook.dll</HintPath>
+      <HintPath>..\packages\EventHook.1.4.113\lib\net45\EventHook.dll</HintPath>
     </Reference>
     <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
