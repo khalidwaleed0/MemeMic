@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -79,7 +80,7 @@ namespace MemeMic
                 isDiscordButtonClicked = false;
             }
         }
-        private void onKeyboardDown(object sender, KeyEventArgs e)
+        private void onKeyboardDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if(isOverlayButtonClicked)  // the event is running all the time but we only need to get the pressed key after
             {                           // the listen button is pressed
@@ -93,10 +94,19 @@ namespace MemeMic
                 isDiscordButtonClicked = false;
             }
         }
-        private void onDispose(object sender, EventArgs e)
+        private void onDispose(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            AppSetup.modifyButtons(ShowOverlayTextBox.Text, DiscordKeyTextBox.Text);
-            Close();
+            if(ShowOverlayTextBox.Text.Equals("Recording.."))
+            {
+                e.Cancel = true;
+                System.Windows.Forms.MessageBox.Show("Please choose a button first", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            else
+            {
+                AppSetup.modifyButtons(ShowOverlayTextBox.Text, DiscordKeyTextBox.Text);
+                Close();
+            }
         }
     }
 }
