@@ -64,7 +64,6 @@ namespace MemeMic
         {
             OptionsWindow optionsWindow = new OptionsWindow();
             optionsWindow.ShowDialog();
-
         }
 
         private void MemeDataBaseButton_Click(object sender, RoutedEventArgs e)
