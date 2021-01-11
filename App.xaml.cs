@@ -16,8 +16,8 @@ namespace MemeMic
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            if (!File.Exists(AppSetup.settingsFilePath))
-                AppSetup.createSettingsFile();
+            AppSetup.checkDirectory();
+            AppSetup.checkSettingsFile();
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
         }
