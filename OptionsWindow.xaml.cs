@@ -105,7 +105,7 @@ namespace MemeMic
             else
             {
                 AppSetup.modifyButtons(ShowOverlayTextBox.Text, DiscordKeyTextBox.Text);
-                Close();
+                //Close();
             }
         }
     }
