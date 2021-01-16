@@ -25,7 +25,8 @@ namespace MemeMic
         public MouseWatcher mouseWatcher;
         private string overlayState = "Hidden";
         private OverlayWindow overlay = new OverlayWindow();
-        private MemePlayer player = new MemePlayer();
+        private PlayingOverlay playingOverlay = new PlayingOverlay();
+        private MemePlayer player = new MemePlayer(overlay);
         private int memeIndex = 0;
         public void captureKeyboardEvent()
         {
@@ -117,13 +118,17 @@ namespace MemeMic
                     break;
                 case "Shown":
                     player.play(AppSetup.filteredMemeFiles[memeIndex]);
+                    Dispatcher.Invoke(() => {
+                        overlay.unhighlightText(memeIndex);
+                        overlay.Hide();
+                        playingOverlay.Show();
+                    });
                     overlayState = "Playing";
                     break;
                 case "Playing":
                     player.stop();
                     Dispatcher.Invoke(() => {
-                        overlay.unhighlightText(memeIndex);
-                        overlay.Hide();
+                        playingOverlay.Hide();
                     });
                     overlayState = "Hidden";
                     break;

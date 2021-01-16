@@ -35,6 +35,13 @@ namespace MemeMic
                 addTextBlock(memeName);
                 highlightText(0);
             }
+            /*            var desktopWorkingArea = SystemParameters.WorkArea;
+                        Left = desktopWorkingArea.Right - ActualWidth;
+                        Top = desktopWorkingArea.Bottom - ActualHeight;*/
+/*            Height = SystemParameters.WorkArea.Height;
+            Width = SystemParameters.WorkArea.Width;
+            Left = SystemParameters.WorkArea.Location.X;
+            Top = SystemParameters.WorkArea.Location.Y;*/
         }
         private void addTextBlock(string text)
         {
