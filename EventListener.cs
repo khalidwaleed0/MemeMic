@@ -26,7 +26,8 @@ namespace MemeMic
         private string overlayState = "Hidden";
         private OverlayWindow overlay = new OverlayWindow();
         private static PlayingOverlay playingOverlay = new PlayingOverlay();
-        private MemePlayer player = new MemePlayer(playingOverlay);
+        private MicPlayer micPlayer = new MicPlayer(playingOverlay);
+        private SpeakerPlayer speakerPlayer = new SpeakerPlayer();
         private int memeIndex = 0;
         public void captureKeyboardEvent()
         {
@@ -117,7 +118,8 @@ namespace MemeMic
                     memeIndex = 0;
                     break;
                 case "Shown":
-                    player.play(AppSetup.filteredMemeFiles[memeIndex]);
+                    micPlayer.play(AppSetup.filteredMemeFiles[memeIndex]);
+                    speakerPlayer.play(AppSetup.filteredMemeFiles[memeIndex]);
                     Dispatcher.Invoke(() => {
                         overlay.unhighlightText(memeIndex);
                         overlay.Hide();
@@ -126,7 +128,8 @@ namespace MemeMic
                     overlayState = "Playing";
                     break;
                 case "Playing":
-                    player.stop();
+                    micPlayer.stop();
+                    speakerPlayer.Stop();
                     Dispatcher.Invoke(() => {
                         playingOverlay.Hide();
                     });
