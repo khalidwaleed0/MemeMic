@@ -12,6 +12,7 @@ namespace MemeMic
         WaveOutEvent speakerPlayer = new WaveOutEvent();
         public SpeakerPlayer()
         {
+            speakerPlayer.Volume = 0.30F;
             speakerPlayer.DeviceNumber = 0;                        // -1 is the default playback device
         }
         public void play(string path)
