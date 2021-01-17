@@ -71,6 +71,7 @@
     <Compile Include="PlayingOverlay.xaml.cs">
       <DependentUpon>PlayingOverlay.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SpeakerPlayer.cs" />
     <Page Include="DataBaseDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -106,7 +107,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MemePlayer.cs" />
+    <Compile Include="MicPlayer.cs" />
     <Compile Include="OptionsWindow.xaml.cs">
       <DependentUpon>OptionsWindow.xaml</DependentUpon>
     </Compile>
