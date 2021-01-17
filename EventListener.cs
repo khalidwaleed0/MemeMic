@@ -25,8 +25,8 @@ namespace MemeMic
         public MouseWatcher mouseWatcher;
         private string overlayState = "Hidden";
         private OverlayWindow overlay = new OverlayWindow();
-        private PlayingOverlay playingOverlay = new PlayingOverlay();
-        private MemePlayer player = new MemePlayer(overlay);
+        private static PlayingOverlay playingOverlay = new PlayingOverlay();
+        private MemePlayer player = new MemePlayer(playingOverlay);
         private int memeIndex = 0;
         public void captureKeyboardEvent()
         {
