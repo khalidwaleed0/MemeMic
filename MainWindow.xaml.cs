@@ -49,7 +49,7 @@ namespace MemeMic
                 }
                 else
                 {
-                    Close();
+                    Hide();
                     EventListener listener = new EventListener();
                     string overlayButton = AppSetup.readSettingsFile(AppSetup.overlayButtonLine);
                     listener.captureMouseEvent();
@@ -84,6 +84,11 @@ namespace MemeMic
                 System.Windows.Forms.MessageBox.Show("Please choose a directory", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void onClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }
