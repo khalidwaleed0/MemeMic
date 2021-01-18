@@ -1,11 +1,8 @@
-﻿using System;
+﻿using NAudio.Wave;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Forms;
 
 namespace MemeMic
 {
@@ -59,6 +56,20 @@ namespace MemeMic
             {
                 filteredMemeFiles.Add(supportedMemeFile);
             }
+        }
+        public static int getVirtualSpeakerNumber()
+        {                         // -1 refers to the "Audio Mapper" and values starting from 0 refer to the devices you have
+            int vbSpeaker = -2;   // so I used -2 so that it means the virtual speaker doesn't exist
+            for (int i = 0; i < WaveOut.DeviceCount; i++)
+            {
+                var caps = WaveOut.GetCapabilities(i);
+                if (caps.ProductName.Contains("VB-Audio"))
+                {
+                    vbSpeaker = i;
+                    break;
+                }
+            }
+            return vbSpeaker;
         }
     }
 }

@@ -31,10 +31,6 @@ namespace MemeMic
         {
             ShowOverlayTextBox.Text = "Recording..";
             PlayMemeTextBox.Text = "Recording..";
-            recordingGif_1.Visibility = Visibility.Visible; 
-            recordingGif_2.Visibility = Visibility.Visible;
-
-            
             isOverlayButtonClicked = true;
         }
         private void displayLatestSettings()
@@ -48,7 +44,10 @@ namespace MemeMic
                 DiscordKeyTextBox.Text = pushToTalkButton;
             }
         }
-       
+        private void PushToTalkRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            DiscordGrid.Visibility = Visibility.Visible;
+        }
         private void VoiceActivityRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             try
@@ -62,44 +61,29 @@ namespace MemeMic
             }
             
         }
-        private void PushToTalkRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            DiscordGrid.Visibility = Visibility.Visible;
-        }
         private void DiscordKeyButton_Click(object sender, RoutedEventArgs e)
         {
             DiscordKeyTextBox.Text = "Recording..";
-            recordingGif_3.Visibility = Visibility.Visible;
             isDiscordButtonClicked = true;
         }
         private void onMouseDown(object sender, MouseButtonEventArgs e)
         {                               // the event is running all the time but we only need to get the pressed key after
             if (isOverlayButtonClicked) // the listen button is pressed
             {
-                 recordingGif_1.Visibility = Visibility.Hidden;
-                recordingGif_2.Visibility = Visibility.Hidden;
                 ShowOverlayTextBox.Text = e.ChangedButton.ToString();
                 PlayMemeTextBox.Text = e.ChangedButton.ToString();
                 isOverlayButtonClicked = false;
-                
-
-
             }
-                  
-            
             else if(isDiscordButtonClicked)
             {
                 DiscordKeyTextBox.Text = e.ChangedButton.ToString();
-                recordingGif_3.Visibility = Visibility.Hidden;
                 isDiscordButtonClicked = false;
             }
         }
         private void onKeyboardDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if(isOverlayButtonClicked)  // the event is running all the time but we only need to get the pressed key after
-            {
-                recordingGif_1.Visibility = Visibility.Hidden;
-               recordingGif_2.Visibility = Visibility.Hidden;
+            {                           // the listen button is pressed
                 ShowOverlayTextBox.Text = e.Key.ToString();
                 PlayMemeTextBox.Text = e.Key.ToString();
                 isOverlayButtonClicked = false;
@@ -107,7 +91,6 @@ namespace MemeMic
             else if(isDiscordButtonClicked)
             {
                 DiscordKeyTextBox.Text = e.Key.ToString();
-                recordingGif_3.Visibility = Visibility.Hidden;
                 isDiscordButtonClicked = false;
             }
         }
@@ -121,11 +104,6 @@ namespace MemeMic
             }
             else
                 AppSetup.modifyButtons(ShowOverlayTextBox.Text, DiscordKeyTextBox.Text);
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }

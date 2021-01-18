@@ -5,15 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MemeMic"
         mc:Ignorable="d"
-        Title="OverlayWindow" WindowStyle="None" WindowStartupLocation="Manual"
-        AllowsTransparency="True" ShowInTaskbar="False" SizeToContent="WidthAndHeight"
-        Cursor="None" Topmost="True" IsHitTestVisible="False" Focusable="False" IsTabStop="False">
+        WindowStyle="None" WindowStartupLocation="Manual"
+        AllowsTransparency="True" ShowInTaskbar="False" SizeToContent="WidthAndHeight" Top="0" Left="0"
+        Cursor="None" Topmost="True" IsHitTestVisible="False" Focusable="False" IsTabStop="False"
+        FontWeight="Bold" FontSize="15" Foreground="White">
+    
         <Window.Background>
             <SolidColorBrush Opacity="0.6" Color="Black"/>
         </Window.Background>
-    <Border Margin="5 5 0 0">
-        <StackPanel>
-            <TextBox x:Name="texto" Text="ohayooooooo" FontWeight="Bold" Foreground="White" Background="Transparent" BorderBrush="Transparent" AcceptsReturn="True"/>
+    <Border Margin="5 5 5 5">
+        <StackPanel x:Name="stackPanel">
+            
         </StackPanel>
     </Border>
 </Window>

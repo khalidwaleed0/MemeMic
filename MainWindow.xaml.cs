@@ -52,10 +52,8 @@ namespace MemeMic
                     Close();
                     EventListener listener = new EventListener();
                     string overlayButton = AppSetup.readSettingsFile(AppSetup.overlayButtonLine);
-                    if (overlayButton.Contains("XButton") || overlayButton.Equals("Middle"))
-                        listener.captureMouseEvent();
-                    else
-                        listener.captureKeyboardEvent();
+                    listener.captureMouseEvent();
+                    listener.captureKeyboardEvent();
                 }
             }
         }

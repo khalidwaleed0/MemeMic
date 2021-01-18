@@ -9,17 +9,23 @@ using System.Windows;
 
 namespace MemeMic
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             AppSetup.checkDirectory();
             AppSetup.checkSettingsFile();
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+            if(AppSetup.getVirtualSpeakerNumber() != -2)
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please install VB-CABLE Virtual Audio Device first\nhttps://vb-audio.com/Cable/"
+                    , "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Diagnostics.Process.Start("https://vb-audio.com/Cable/");
+            }
         }
     }
 }

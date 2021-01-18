@@ -19,10 +19,44 @@ namespace MemeMic
     /// </summary>
     public partial class OverlayWindow : Window
     {
+        private List<TextBlock> textBlocks = new List<TextBlock>(); 
+
         public OverlayWindow()
         {
             InitializeComponent();
-            texto.Text = "hellohellohellohellohello\r\nhello";
+            displayMemes();
+        }
+        private void displayMemes()
+        {
+            foreach (string filePath in AppSetup.filteredMemeFiles)
+            {
+                string[] pathParts = filePath.Split(new char[] { '\\', '.' });
+                string memeName = pathParts[pathParts.Length - 2];
+                addTextBlock(memeName);
+                highlightText(0);
+            }
+            /*            var desktopWorkingArea = SystemParameters.WorkArea;
+                        Left = desktopWorkingArea.Right - ActualWidth;
+                        Top = desktopWorkingArea.Bottom - ActualHeight;*/
+/*            Height = SystemParameters.WorkArea.Height;
+            Width = SystemParameters.WorkArea.Width;
+            Left = SystemParameters.WorkArea.Location.X;
+            Top = SystemParameters.WorkArea.Location.Y;*/
+        }
+        private void addTextBlock(string text)
+        {
+            TextBlock newTextBlock = new TextBlock();
+            newTextBlock.Text = text;
+            stackPanel.Children.Add(newTextBlock);
+            textBlocks.Add(newTextBlock);
+        }
+        public void highlightText(int i)
+        {
+            textBlocks[i].Foreground = new SolidColorBrush(Colors.Aqua);
+        }
+        public void unhighlightText(int i)
+        {
+            textBlocks[i].Foreground = new SolidColorBrush(Colors.White);
         }
     }
 }
