@@ -13,7 +13,7 @@ namespace MemeMic
         public SpeakerPlayer()
         {
             speakerPlayer.Volume = 0.30F;
-            speakerPlayer.DeviceNumber = 0;                        // -1 is the default playback device
+            speakerPlayer.DeviceNumber = 0;                        // -1 or 0 mean the default playback device
         }
         public void play(string path)
         {
