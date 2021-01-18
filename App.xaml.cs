@@ -19,6 +19,8 @@ namespace MemeMic
             {
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
+                TrayIcon trayIcon = new TrayIcon();
+                trayIcon.Show();
             }
             else
             {

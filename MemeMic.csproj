@@ -75,6 +75,7 @@
       <DependentUpon>PlayingOverlay.xaml</DependentUpon>
     </Compile>
     <Compile Include="SpeakerPlayer.cs" />
+    <Compile Include="TrayIcon.cs" />
     <Page Include="DataBaseDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -140,6 +141,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\mainWindow_Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\small_logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
