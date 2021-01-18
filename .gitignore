@@ -3,3 +3,4 @@ obj/
 .vs/MemeMic/v16/.suo
 packages/
 MemeMic.sln
+MemeMic.csproj
