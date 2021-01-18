@@ -31,6 +31,8 @@ namespace MemeMic
         {
             ShowOverlayTextBox.Text = "Recording..";
             PlayMemeTextBox.Text = "Recording..";
+            recordingGif_1.Visibility = Visibility.Visible;
+            recordingGif_2.Visibility = Visibility.Visible;
             isOverlayButtonClicked = true;
         }
         private void displayLatestSettings()
@@ -64,6 +66,7 @@ namespace MemeMic
         private void DiscordKeyButton_Click(object sender, RoutedEventArgs e)
         {
             DiscordKeyTextBox.Text = "Recording..";
+            recordingGif_3.Visibility = Visibility.Visible;
             isDiscordButtonClicked = true;
         }
         private void onMouseDown(object sender, MouseButtonEventArgs e)
@@ -72,11 +75,14 @@ namespace MemeMic
             {
                 ShowOverlayTextBox.Text = e.ChangedButton.ToString();
                 PlayMemeTextBox.Text = e.ChangedButton.ToString();
+                recordingGif_1.Visibility = Visibility.Hidden;
+                recordingGif_2.Visibility = Visibility.Hidden;
                 isOverlayButtonClicked = false;
             }
             else if(isDiscordButtonClicked)
             {
                 DiscordKeyTextBox.Text = e.ChangedButton.ToString();
+                recordingGif_3.Visibility = Visibility.Hidden;
                 isDiscordButtonClicked = false;
             }
         }
@@ -86,11 +92,14 @@ namespace MemeMic
             {                           // the listen button is pressed
                 ShowOverlayTextBox.Text = e.Key.ToString();
                 PlayMemeTextBox.Text = e.Key.ToString();
+                recordingGif_1.Visibility = Visibility.Hidden;
+                recordingGif_2.Visibility = Visibility.Hidden;
                 isOverlayButtonClicked = false;
             }
             else if(isDiscordButtonClicked)
             {
                 DiscordKeyTextBox.Text = e.Key.ToString();
+                recordingGif_3.Visibility = Visibility.Hidden;
                 isDiscordButtonClicked = false;
             }
         }
