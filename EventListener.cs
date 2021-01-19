@@ -44,6 +44,8 @@ namespace MemeMic
             string savedButton = AppSetup.readSettingsFile(AppSetup.overlayButtonLine);
             string correctMouseData = "";
             string correctMouseButton = "";
+            const string mouseWheelUpData = "7864320";
+            const string mouseWheelDownData = "4287102976";
             get_SavedMouseButton_Data(savedButton, ref correctMouseData, ref correctMouseButton);
             mouseWatcher = eventHookFactory.GetMouseWatcher();
             mouseWatcher.Start();
@@ -53,8 +55,6 @@ namespace MemeMic
                 string mouseInputData = e.MouseData.ToString();
                 if(overlayState.Equals("Shown"))
                 {
-                    const string mouseWheelUpData = "7864320";
-                    const string mouseWheelDownData = "4287102976";
                     if (mouseInputData.Equals(mouseWheelDownData))
                         scrollDown();
                     else if (mouseInputData.Equals(mouseWheelUpData))
