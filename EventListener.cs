@@ -44,8 +44,6 @@ namespace MemeMic
             string savedButton = AppSetup.readSettingsFile(AppSetup.overlayButtonLine);
             string correctMouseData = "";
             string correctMouseButton = "";
-            string mouseWheelUpData = "7864320";
-            string mouseWheelDownData = "4287102976";
             get_SavedMouseButton_Data(savedButton, ref correctMouseData, ref correctMouseButton);
             mouseWatcher = eventHookFactory.GetMouseWatcher();
             mouseWatcher.Start();
@@ -55,28 +53,12 @@ namespace MemeMic
                 string mouseInputData = e.MouseData.ToString();
                 if(overlayState.Equals("Shown"))
                 {
-                    if(mouseInputData.Equals(mouseWheelDownData))
-                    {
-                        if(memeIndex != (AppSetup.filteredMemeFiles.Count-1))
-                        {
-                            memeIndex++;
-                            Dispatcher.Invoke(() => {
-                                overlay.unhighlightText(memeIndex - 1);
-                                overlay.highlightText(memeIndex);
-                            });
-                        }                                     
-                    }
-                    else if(mouseInputData.Equals(mouseWheelUpData))
-                    {
-                        if (memeIndex != 0)
-                        {
-                            memeIndex--;
-                            Dispatcher.Invoke(() => {
-                                overlay.unhighlightText(memeIndex + 1);
-                                overlay.highlightText(memeIndex);
-                            });
-                        }
-                    }
+                    const string mouseWheelUpData = "7864320";
+                    const string mouseWheelDownData = "4287102976";
+                    if (mouseInputData.Equals(mouseWheelDownData))
+                        scrollDown();
+                    else if (mouseInputData.Equals(mouseWheelUpData))
+                        scrollUp();
                 }
 
                 if (savedButton.Contains("XButton"))
@@ -135,6 +117,30 @@ namespace MemeMic
                     });
                     overlayState = "Hidden";
                     break;
+            }
+        }
+        private void scrollDown()
+        {
+            if (memeIndex != (AppSetup.filteredMemeFiles.Count - 1))
+            {
+                memeIndex++;
+                Dispatcher.Invoke(() =>
+                {
+                    overlay.unhighlightText(memeIndex - 1);
+                    overlay.highlightText(memeIndex);
+                });
+            }
+        }
+        private void scrollUp()
+        {
+            if (memeIndex != 0)
+            {
+                memeIndex--;
+                Dispatcher.Invoke(() =>
+                {
+                    overlay.unhighlightText(memeIndex + 1);
+                    overlay.highlightText(memeIndex);
+                });
             }
         }
         public void closeListener()
