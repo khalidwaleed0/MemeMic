@@ -25,6 +25,7 @@ namespace MemeMic
     public partial class MainWindow : Window
     {
         OverlayWindow overlay = new OverlayWindow();
+        private bool isClosedNotExited = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -49,7 +50,8 @@ namespace MemeMic
                 }
                 else
                 {
-                    Hide();
+                    isClosedNotExited = true;
+                    Close();
                     EventListener listener = new EventListener();
                     string overlayButton = AppSetup.readSettingsFile(AppSetup.overlayButtonLine);
                     listener.captureMouseEvent();
@@ -88,7 +90,10 @@ namespace MemeMic
 
         private void onClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            System.Windows.Application.Current.Shutdown();
+            if(!isClosedNotExited)
+                System.Windows.Application.Current.Shutdown();
+            //if the it is closed by the x button then it will shutdown
+            //otherwise, it will just close the window but keep running in background
         }
     }
 }
