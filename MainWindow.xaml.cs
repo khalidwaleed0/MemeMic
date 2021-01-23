@@ -92,7 +92,7 @@ namespace MemeMic
         {
             if(!isClosedNotExited)
                 System.Windows.Application.Current.Shutdown();
-            //if the it is closed by the x button then it will shutdown
+            //if it is closed by the x button then it will shutdown
             //otherwise, it will just close the window but keep running in background
         }
     }
