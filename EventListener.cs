@@ -31,11 +31,12 @@ namespace MemeMic
         private int memeIndex = 0;
         public void captureKeyboardEvent()
         {
+            string savedButton = AppSetup.readSettingsFile(AppSetup.overlayButtonLine);
             keyboardWatcher = eventHookFactory.GetKeyboardWatcher();
             keyboardWatcher.Start();
             keyboardWatcher.OnKeyInput += (s, e) =>
             {
-                if(e.KeyData.EventType.ToString().Equals("down") && e.KeyData.Keyname.ToString().Equals(AppSetup.readSettingsFile(AppSetup.overlayButtonLine)))
+                if(e.KeyData.Keyname.ToString().Equals(savedButton) && e.KeyData.EventType.ToString().Equals("down"))
                     changeOverlayState();
             };
         }
