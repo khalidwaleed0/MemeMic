@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:MemeMic"
         mc:Ignorable="d"
         WindowStartupLocation="Manual" WindowStyle="None" SizeToContent="WidthAndHeight"
-        AllowsTransparency="True" Topmost="true" Top="0" Left="0"
-        Focusable="False" IsTabStop="False" ShowInTaskbar="False" Cursor="None" IsHitTestVisible="False"
+        Topmost="true" Top="0" Left="0"
+        AllowsTransparency="True" Focusable="False" IsTabStop="False" ShowInTaskbar="False" Cursor="None" ShowActivated="False"
         FontWeight="Bold" FontSize="15" Foreground="White">
     <Window.Background>
         <SolidColorBrush Opacity="0.6" Color="Black"/>
