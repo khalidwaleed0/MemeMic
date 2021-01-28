@@ -8,7 +8,7 @@ namespace MemeMic
     {
         private static TrayIcon trayIcon = null;
         public NotifyIcon notifyIcon = new NotifyIcon();
-        public static TrayIcon Singleton()
+        public static TrayIcon getInstance()
         {
             if (trayIcon == null)
                 trayIcon = new TrayIcon();

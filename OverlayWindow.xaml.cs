@@ -28,7 +28,7 @@ namespace MemeMic
         }
         private void displayMemes()
         {
-            foreach (string filePath in AppSetup.filteredMemeFiles)
+            foreach (string filePath in AppSetup.getInstance().filteredMemeFiles)
             {
                 string[] pathParts = filePath.Split(new char[] { '\\', '.' });
                 string memeName = pathParts[pathParts.Length - 2];

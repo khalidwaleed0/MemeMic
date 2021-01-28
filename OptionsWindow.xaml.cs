@@ -37,9 +37,9 @@ namespace MemeMic
         }
         private void displayLatestSettings()
         {
-            ShowOverlayTextBox.Text = AppSetup.readSettingsFile(AppSetup.overlayButtonLine);
-            PlayMemeTextBox.Text = AppSetup.readSettingsFile(AppSetup.overlayButtonLine);
-            string pushToTalkButton = AppSetup.readSettingsFile(AppSetup.pushToTalkLine);
+            ShowOverlayTextBox.Text = AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine);
+            PlayMemeTextBox.Text = AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine);
+            string pushToTalkButton = AppSetup.getInstance().readSettingsFile(AppSetup.pushToTalkLine);
             if (!pushToTalkButton.Equals(""))
             {
                 PushToTalkRadioButton.IsChecked = true;
@@ -112,7 +112,7 @@ namespace MemeMic
                     MessageBoxIcon.Error);
             }
             else
-                AppSetup.modifyButtons(ShowOverlayTextBox.Text, DiscordKeyTextBox.Text);
+                AppSetup.getInstance().modifyButtons(ShowOverlayTextBox.Text, DiscordKeyTextBox.Text);
         }
     }
 }

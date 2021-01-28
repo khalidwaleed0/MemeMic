@@ -31,7 +31,7 @@ namespace MemeMic
         private int memeIndex = 0;
         public void captureKeyboardEvent()
         {
-            string savedButton = AppSetup.readSettingsFile(AppSetup.overlayButtonLine);
+            string savedButton = AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine);
             keyboardWatcher = eventHookFactory.GetKeyboardWatcher();
             keyboardWatcher.Start();
             keyboardWatcher.OnKeyInput += (s, e) =>
@@ -42,7 +42,7 @@ namespace MemeMic
         }
         public void captureMouseEvent()
         {
-            string savedButton = AppSetup.readSettingsFile(AppSetup.overlayButtonLine);
+            string savedButton = AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine);
             string correctMouseData = "";
             string correctMouseButton = "";
             const string mouseWheelUpData = "7864320";
@@ -101,8 +101,8 @@ namespace MemeMic
                     memeIndex = 0;
                     break;
                 case "Shown":
-                    micPlayer.play(AppSetup.filteredMemeFiles[memeIndex]);
-                    speakerPlayer.play(AppSetup.filteredMemeFiles[memeIndex]);
+                    micPlayer.play(AppSetup.getInstance().filteredMemeFiles[memeIndex]);
+                    speakerPlayer.play(AppSetup.getInstance().filteredMemeFiles[memeIndex]);
                     Dispatcher.Invoke(() => {
                         overlay.unhighlightText(memeIndex);
                         overlay.Hide();
@@ -122,7 +122,7 @@ namespace MemeMic
         }
         private void scrollDown()
         {
-            if (memeIndex != (AppSetup.filteredMemeFiles.Count - 1))
+            if (memeIndex != (AppSetup.getInstance().filteredMemeFiles.Count - 1))
             {
                 memeIndex++;
                 Dispatcher.Invoke(() =>

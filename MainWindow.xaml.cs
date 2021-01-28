@@ -29,20 +29,20 @@ namespace MemeMic
         public MainWindow()
         {
             InitializeComponent();
-            DirectoryTextBox.Text = AppSetup.readSettingsFile(AppSetup.pathLine);
+            DirectoryTextBox.Text = AppSetup.getInstance().readSettingsFile(AppSetup.pathLine);
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            if (AppSetup.readSettingsFile(AppSetup.pathLine).Equals("") || AppSetup.readSettingsFile(AppSetup.overlayButtonLine).Equals(""))
+            if (AppSetup.getInstance().readSettingsFile(AppSetup.pathLine).Equals("") || AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine).Equals(""))
             {
                 System.Windows.Forms.MessageBox.Show("Make sure to choose the folder meme\nand the overlay button"
                     , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                AppSetup.filterMemeFiles();
-                if(AppSetup.filteredMemeFiles.Count == 0)
+                AppSetup.getInstance().filterMemeFiles();
+                if(AppSetup.getInstance().filteredMemeFiles.Count == 0)
                 {
                     System.Windows.Forms.MessageBox.Show("The selected folder meme does not contain any valid memes" +
                         "\nSupported Extensions: .mp3,.aac,.wav,.webm,.m4a,.mp4,.mkv"
@@ -53,7 +53,7 @@ namespace MemeMic
                     isClosedNotExited = true;
                     Close();
                     EventListener listener = new EventListener();
-                    string overlayButton = AppSetup.readSettingsFile(AppSetup.overlayButtonLine);
+                    string overlayButton = AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine);
                     listener.captureMouseEvent();
                     listener.captureKeyboardEvent();
                 }
@@ -79,7 +79,7 @@ namespace MemeMic
             if(isFolderSelected)
             {
                 DirectoryTextBox.Text = folderDialog.SelectedPath;
-                AppSetup.modifyFolderPath(folderDialog.SelectedPath);
+                AppSetup.getInstance().modifyFolderPath(folderDialog.SelectedPath);
             }
             else
             {
@@ -92,7 +92,7 @@ namespace MemeMic
         {
             if (!isClosedNotExited)
             {
-                TrayIcon.Singleton().notifyIcon.Dispose();
+                TrayIcon.getInstance().notifyIcon.Dispose();
                 System.Windows.Application.Current.Shutdown();
             }
             //if it is closed by the x button then it will shutdown

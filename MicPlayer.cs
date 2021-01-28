@@ -12,7 +12,7 @@ namespace MemeMic
 
         public MicPlayer(PlayingOverlay playingOverlay)
         {
-            micPlayer.DeviceNumber = AppSetup.getVirtualSpeakerNumber();
+            micPlayer.DeviceNumber = AppSetup.getInstance().getVirtualSpeakerNumber();
             micPlayer.PlaybackStopped += Player_PlaybackStopped;
             this.playingOverlay = playingOverlay;
         }

@@ -13,13 +13,13 @@ namespace MemeMic
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            AppSetup.checkDirectory();
-            AppSetup.checkSettingsFile();
-            if(AppSetup.getVirtualSpeakerNumber() != -2)
+            AppSetup.getInstance().checkDirectory();
+            AppSetup.getInstance().checkSettingsFile();
+            if(AppSetup.getInstance().getVirtualSpeakerNumber() != -2)
             {
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
-                TrayIcon.Singleton().Show();
+                TrayIcon.getInstance().Show();
             }
             else
             {
