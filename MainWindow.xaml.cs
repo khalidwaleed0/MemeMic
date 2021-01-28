@@ -90,8 +90,11 @@ namespace MemeMic
 
         private void onClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if(!isClosedNotExited)
+            if (!isClosedNotExited)
+            {
+                TrayIcon.Singleton().notifyIcon.Dispose();
                 System.Windows.Application.Current.Shutdown();
+            }
             //if it is closed by the x button then it will shutdown
             //otherwise, it will just close the window but keep running in background
         }
