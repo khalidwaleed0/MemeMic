@@ -25,3 +25,19 @@ class TestMemeLister(unittest.TestCase):
         output = ml.list()
         # Then
         self.assertEqual(output, files)
+
+    def test_should_return_path(self):
+        # Given
+        ml = MemeLister("memes")
+        # When
+        output = ml.get_path("at_this_moment")
+        # Then
+        self.assertEqual(output, "memes/at_this_moment")
+
+    def test_should_return_paths(self):
+        # Given
+        ml = MemeLister("memes")
+        # When
+        output = ml.get_paths(["at_this_moment", "spacetoon"])
+        # Then
+        self.assertEqual(output, ["memes/at_this_moment", "memes/spacetoon"])
