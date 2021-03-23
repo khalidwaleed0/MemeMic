@@ -5,10 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MemeMic"
         mc:Ignorable="d"
-        Title="MemeMic" Height="452.053" Width="904.105"  WindowStartupLocation="CenterScreen"
-        OpacityMask="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"
-        Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"
-        ResizeMode="CanMinimize" Background="#FF3B4456" Closing="onClosing" >
+        Title="MemeMic" Height="452.053" Width="904.105"  WindowStartupLocation="CenterScreen" OpacityMask="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" ResizeMode="CanMinimize" Background="#FF3B4456" >
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -241,15 +238,15 @@
         <Grid Background="#FF91CD7B" >
             <Image HorizontalAlignment="Left" Height="402" Margin="42,-32,0,0" VerticalAlignment="Top" Width="796"  Source="Resources/mainWindow_Logo.png" Stretch="UniformToFill"/>
             <TextBox x:Name="DirectoryTextBox" Margin="245.51,28,0,342" FontFamily="Arial Narrow" FontSize="20" IsReadOnly="True" Background="#FFFDECEC" Style="{DynamicResource TextBoxStyle1}" HorizontalAlignment="Left" Width="487" UseLayoutRounding="False" BorderBrush="#FFE8EBF3" />
-            <TextBlock Text="M e m e   D i r e c t o r y" FontWeight="Heavy" Foreground="#FF030303" Margin="19,27,0,311.2" FontFamily="Showcard Gothic" FontSize="18" RenderTransformOrigin="0.5,0.524" HorizontalAlignment="Left" Width="237"/>
-            <Button Content="B r o w s e" Margin="745,0,0,337.4" RenderTransformOrigin="0.305,0.614" x:Name="BrowseButton" Click="BrowseButton_Click" BorderBrush="#FF2E2C65" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="113" Style="{DynamicResource roundedButtonStyle_4}" Background="#FF2E2C65" FontFamily="Showcard Gothic" Foreground="#FFFAF8F8">
+            <TextBlock Text="Meme  Directory" FontWeight="Heavy" Foreground="#FF030303" Margin="55,25,0,337.4" FontFamily="Source Serif Pro Black" FontSize="20" RenderTransformOrigin="0.5,0.524" HorizontalAlignment="Left" Width="186"/>
+            <Button Content="Browse" Margin="745,0,0,337.4" RenderTransformOrigin="0.305,0.614" x:Name="BrowseButton" Click="BrowseButton_Click" BorderBrush="#FF2E2C65" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="113" Style="{DynamicResource roundedButtonStyle_4}" Background="#FF2E2C65" FontFamily="Source Serif Pro Semibold" Foreground="#FFFAF8F8" FontSize="16">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
             </Button>
-            <Button  Content="S t a r t" Grid.Column="0" Click="StartButton_Click" Background="#FF2E2C65" Foreground="#FFFCF8F8" BorderBrush="#FF2E2C65" Margin="27,338,712.6,21.2" FontFamily="Showcard Gothic" FontSize="18" Style="{DynamicResource RoundedButtonStyle_3}" />
-            <Button Content="U p l o a d / D o w n l o a d  M e m e s" FontWeight="Bold" Click="MemeDataBaseButton_Click" Foreground="#FFF4EEEE" Background="#FF2E2C65" BorderBrush="#FF2E2C65" Margin="242,338,271.6,21.2" FontFamily="Showcard Gothic" FontSize="14" Style="{DynamicResource RoundedButtonStyle_2}"/>
-            <Button Content="O p t i o n s"  Click="OptionsButton_Click" Background="#FF2E2C65" Foreground="#FFEEECEC" BorderBrush="#FF2E2C65" Margin="674,338,25.6,21.2" FontFamily="Showcard Gothic" FontSize="18" RenderTransformOrigin="0.5,0.5" Style="{DynamicResource RoundedButtonStyle}"/>
+            <Button  Content="Start" Grid.Column="0" Click="StartButton_Click" Background="#FF2E2C65" Foreground="#FFFCF8F8" BorderBrush="#FF2E2C65" Margin="27,338,712.6,21.2" FontFamily="Source Serif Pro Black" FontSize="22" Style="{DynamicResource RoundedButtonStyle_3}" />
+            <Button Content="Upload / Download Memes" FontWeight="Bold" Click="MemeDataBaseButton_Click" Foreground="#FFF4EEEE" Background="#FF2E2C65" BorderBrush="#FF2E2C65" Margin="242,338,271.6,21.2" FontFamily="Source Serif Pro Black" FontSize="22" Style="{DynamicResource RoundedButtonStyle_2}"/>
+            <Button Content="Options"  Click="OptionsButton_Click" Background="#FF2E2C65" Foreground="#FFEEECEC" BorderBrush="#FF2E2C65" Margin="674,338,25.6,21.2" FontFamily="Source Serif Pro Black" FontSize="22" RenderTransformOrigin="0.5,0.5" Style="{DynamicResource RoundedButtonStyle}"/>
         </Grid>
     </Border>
 </Window>

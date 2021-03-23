@@ -26,11 +26,11 @@ namespace MemeMic
 
         private void MemeMicButton_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.google.com");
+            System.Diagnostics.Process.Start("https://docs.google.com/spreadsheets/d/1B9sk4PMx1W40chkqL1t5MLXK8VwVcQuJJtQNBZOlwZA/edit?fbclid=IwAR0UEMe2gj0Wu8TGuii3JCvfo9_yP-hznRi6aGkFtIsUe1uPxZmG09K13s8#gid=0");
         }
         private void CommunityButton_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.google.com");
+            System.Diagnostics.Process.Start("https://docs.google.com/spreadsheets/d/1sVNmhwQzJBdm9_RKaR_cp3SFwMQ8BntUzr8_Jb-4K-c/edit?usp=sharing");
         }
     }
 }

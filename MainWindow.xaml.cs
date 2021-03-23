@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
 using System.Threading;
+using WindowsInput;
 
 namespace MemeMic
 {
@@ -25,24 +26,27 @@ namespace MemeMic
     public partial class MainWindow : Window
     {
         OverlayWindow overlay = new OverlayWindow();
-        private bool isClosedNotExited = false;
+        
+        
         public MainWindow()
         {
             InitializeComponent();
-            DirectoryTextBox.Text = AppSetup.getInstance().readSettingsFile(AppSetup.pathLine);
+            DirectoryTextBox.Text = AppSetup.readSettingsFile(AppSetup.pathLine);
+            
         }
-
-        private void StartButton_Click(object sender, RoutedEventArgs e)
+        
+        
+       private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            if (AppSetup.getInstance().readSettingsFile(AppSetup.pathLine).Equals("") || AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine).Equals(""))
+            if (AppSetup.readSettingsFile(AppSetup.pathLine).Equals("") || AppSetup.readSettingsFile(AppSetup.overlayButtonLine).Equals(""))
             {
                 System.Windows.Forms.MessageBox.Show("Make sure to choose the folder meme\nand the overlay button"
                     , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                AppSetup.getInstance().filterMemeFiles();
-                if(AppSetup.getInstance().filteredMemeFiles.Count == 0)
+                AppSetup.filterMemeFiles();
+                if(AppSetup.filteredMemeFiles.Count == 0)
                 {
                     System.Windows.Forms.MessageBox.Show("The selected folder meme does not contain any valid memes" +
                         "\nSupported Extensions: .mp3,.aac,.wav,.webm,.m4a,.mp4,.mkv"
@@ -50,10 +54,9 @@ namespace MemeMic
                 }
                 else
                 {
-                    isClosedNotExited = true;
                     Close();
                     EventListener listener = new EventListener();
-                    string overlayButton = AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine);
+                    string overlayButton = AppSetup.readSettingsFile(AppSetup.overlayButtonLine);
                     listener.captureMouseEvent();
                     listener.captureKeyboardEvent();
                 }
@@ -79,7 +82,7 @@ namespace MemeMic
             if(isFolderSelected)
             {
                 DirectoryTextBox.Text = folderDialog.SelectedPath;
-                AppSetup.getInstance().modifyFolderPath(folderDialog.SelectedPath);
+                AppSetup.modifyFolderPath(folderDialog.SelectedPath);
             }
             else
             {
@@ -88,15 +91,6 @@ namespace MemeMic
             }
         }
 
-        private void onClosing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (!isClosedNotExited)
-            {
-                TrayIcon.getInstance().notifyIcon.Dispose();
-                System.Windows.Application.Current.Shutdown();
-            }
-            //if it is closed by the x button then it will shutdown
-            //otherwise, it will just close the window but keep running in background
-        }
+       
     }
 }
