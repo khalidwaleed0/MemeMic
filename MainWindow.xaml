@@ -237,9 +237,9 @@
 
         <Grid Background="#FF91CD7B" >
             <Image HorizontalAlignment="Left" Height="402" Margin="42,-32,0,0" VerticalAlignment="Top" Width="796"  Source="Resources/mainWindow_Logo.png" Stretch="UniformToFill"/>
-            <TextBox x:Name="DirectoryTextBox" Margin="245.51,28,0,342" FontFamily="Arial Narrow" FontSize="20" IsReadOnly="True" Background="#FFFDECEC" Style="{DynamicResource TextBoxStyle1}" HorizontalAlignment="Left" Width="487" UseLayoutRounding="False" BorderBrush="#FFE8EBF3" />
-            <TextBlock Text="Meme  Directory" FontWeight="Heavy" Foreground="#FF030303" Margin="55,25,0,337.4" FontFamily="Source Serif Pro Black" FontSize="20" RenderTransformOrigin="0.5,0.524" HorizontalAlignment="Left" Width="186"/>
-            <Button Content="Browse" Margin="745,0,0,337.4" RenderTransformOrigin="0.305,0.614" x:Name="BrowseButton" Click="BrowseButton_Click" BorderBrush="#FF2E2C65" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="113" Style="{DynamicResource roundedButtonStyle_4}" Background="#FF2E2C65" FontFamily="Source Serif Pro Semibold" Foreground="#FFFAF8F8" FontSize="16" FontWeight="Bold">
+            <TextBox x:Name="DirectoryTextBox" Margin="227.133,28,0,342" FontFamily="Arial Narrow" FontSize="20" IsReadOnly="True" Background="#FFFDECEC" Style="{DynamicResource TextBoxStyle1}" HorizontalAlignment="Left" Width="487" UseLayoutRounding="False" BorderBrush="#FFE8EBF3" />
+            <TextBlock Text="Meme  Directory" FontWeight="Heavy" Foreground="#FF030303" Margin="30,26,0,336" FontFamily="Source Serif Pro Black" FontSize="20" RenderTransformOrigin="0.5,0.524" HorizontalAlignment="Left" Width="186"/>
+            <Button Content="Browse" Margin="738,0,0,337" RenderTransformOrigin="0.305,0.614" x:Name="BrowseButton" Click="BrowseButton_Click" BorderBrush="#FF2E2C65" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="113" Style="{DynamicResource roundedButtonStyle_4}" Background="#FF2E2C65" FontFamily="Source Serif Pro Semibold" Foreground="#FFFAF8F8" FontSize="16" FontWeight="Bold">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
