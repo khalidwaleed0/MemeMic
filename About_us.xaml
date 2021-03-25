@@ -1,0 +1,36 @@
+﻿<Window x:Class="MemeMic.About_us"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MemeMic"
+        mc:Ignorable="d"
+        Title="About_us" Height="294.013" Width="522.689" WindowStartupLocation="CenterScreen">
+    <Grid Background="#FF91CD7B">
+        <TextBlock HorizontalAlignment="Left" Margin="20,17,0,0" TextWrapping="Wrap" Text="Developers :" VerticalAlignment="Top" FontFamily="Source Serif Pro Black" FontSize="22" Height="38" Width="149" />
+        <TextBlock Margin="33,55,374,185.8">           
+    <Hyperlink NavigateUri="https://github.com/khalidwaleed0" RequestNavigate="Hyperlink_RequestNavigate">
+       Khalid Waleed
+    </Hyperlink>
+        </TextBlock>
+        <TextBlock Margin="32,119,375,121.8">           
+    <Hyperlink NavigateUri="https://github.com/khaled1000emad" RequestNavigate="Hyperlink_RequestNavigate_1">
+       Khalid Emad
+    </Hyperlink>
+        </TextBlock>
+        <TextBlock Margin="32,86,375,154.8">           
+    <Hyperlink NavigateUri="https://github.com/Hossam-Abdin/?fbclid=IwAR0qdcjPA31DR6HwnEuhHGKLuDXHinKIFxdPZusjACKt6UH9dsmcbGBS85A" RequestNavigate="Hyperlink_RequestNavigate_2">
+       Hossam Abdin
+    </Hyperlink>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="133,56,0,0" TextWrapping="Wrap" Text="-  khalidwaleed0@outlook.com" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="133,119,0,0" TextWrapping="Wrap" Text="-  kemad951@gmail.com" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="25,155,0,0" TextWrapping="Wrap" Text="Github Link :" VerticalAlignment="Top" FontFamily="Source Serif Pro Black" FontSize="22"/>
+        <TextBlock Margin="49,193,358,47.8">           
+    <Hyperlink NavigateUri="https://github.com/khalidwaleed0/MemeMic?fbclid=IwAR0mg7GjN9RctHH8ovQpwS3FsVYtFhArNOPONWnoqTgJxGMnOk5VS_yNG7A" RequestNavigate="Hyperlink_RequestNavigate">
+       MemeMic 
+    </Hyperlink>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="133,88,0,0" TextWrapping="Wrap" Text="-  hossamabdeen17@gmail.com" VerticalAlignment="Top" FontWeight="Bold"/>
+    </Grid>
+</Window>
