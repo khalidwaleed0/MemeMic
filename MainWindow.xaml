@@ -239,14 +239,14 @@
             <Image HorizontalAlignment="Left" Height="402" Margin="42,-32,0,0" VerticalAlignment="Top" Width="796"  Source="Resources/mainWindow_Logo.png" Stretch="UniformToFill"/>
             <TextBox x:Name="DirectoryTextBox" Margin="245.51,28,0,342" FontFamily="Arial Narrow" FontSize="20" IsReadOnly="True" Background="#FFFDECEC" Style="{DynamicResource TextBoxStyle1}" HorizontalAlignment="Left" Width="487" UseLayoutRounding="False" BorderBrush="#FFE8EBF3" />
             <TextBlock Text="Meme  Directory" FontWeight="Heavy" Foreground="#FF030303" Margin="55,25,0,337.4" FontFamily="Source Serif Pro Black" FontSize="20" RenderTransformOrigin="0.5,0.524" HorizontalAlignment="Left" Width="186"/>
-            <Button Content="Browse" Margin="745,0,0,337.4" RenderTransformOrigin="0.305,0.614" x:Name="BrowseButton" Click="BrowseButton_Click" BorderBrush="#FF2E2C65" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="113" Style="{DynamicResource roundedButtonStyle_4}" Background="#FF2E2C65" FontFamily="Source Serif Pro Semibold" Foreground="#FFFAF8F8" FontSize="16">
+            <Button Content="Browse" Margin="745,0,0,337.4" RenderTransformOrigin="0.305,0.614" x:Name="BrowseButton" Click="BrowseButton_Click" BorderBrush="#FF2E2C65" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="113" Style="{DynamicResource roundedButtonStyle_4}" Background="#FF2E2C65" FontFamily="Source Serif Pro Semibold" Foreground="#FFFAF8F8" FontSize="16" FontWeight="Bold">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
             </Button>
-            <Button  Content="Start" Grid.Column="0" Click="StartButton_Click" Background="#FF2E2C65" Foreground="#FFFCF8F8" BorderBrush="#FF2E2C65" Margin="27,338,712.6,21.2" FontFamily="Source Serif Pro Black" FontSize="22" Style="{DynamicResource RoundedButtonStyle_3}" />
+            <Button  Content="Start" Grid.Column="0" Click="StartButton_Click" Background="#FF2E2C65" Foreground="#FFFCF8F8" BorderBrush="#FF2E2C65" Margin="27,338,712.6,21.2" FontFamily="Source Serif Pro Black" FontSize="22" Style="{DynamicResource RoundedButtonStyle_3}" FontWeight="Bold" />
             <Button Content="Upload / Download Memes" FontWeight="Bold" Click="MemeDataBaseButton_Click" Foreground="#FFF4EEEE" Background="#FF2E2C65" BorderBrush="#FF2E2C65" Margin="242,338,271.6,21.2" FontFamily="Source Serif Pro Black" FontSize="22" Style="{DynamicResource RoundedButtonStyle_2}"/>
-            <Button Content="Options"  Click="OptionsButton_Click" Background="#FF2E2C65" Foreground="#FFEEECEC" BorderBrush="#FF2E2C65" Margin="674,338,25.6,21.2" FontFamily="Source Serif Pro Black" FontSize="22" RenderTransformOrigin="0.5,0.5" Style="{DynamicResource RoundedButtonStyle}"/>
+            <Button Content="Options"  Click="OptionsButton_Click" Background="#FF2E2C65" Foreground="#FFEEECEC" BorderBrush="#FF2E2C65" Margin="674,338,25.6,21.2" FontFamily="Source Serif Pro Black" FontSize="22" RenderTransformOrigin="0.5,0.5" Style="{DynamicResource RoundedButtonStyle}" FontWeight="Bold"/>
         </Grid>
     </Border>
 </Window>
