@@ -174,16 +174,20 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Button x:Name="About" Content="About Us" HorizontalAlignment="Left" Margin="131,181,0,0" VerticalAlignment="Top" Width="102" Height="32" FontFamily="Source Serif Pro Black" FontSize="17" Background="#FF2E2C65" BorderBrush="#FF2E2C65" Foreground="#FFF3ECEC" Click="Button_Click" Style="{DynamicResource AboutStyle}">
+            <Button x:Name="About" Content="About Us" HorizontalAlignment="Left" Margin="131,210,0,0" VerticalAlignment="Top" Width="102" Height="32" FontFamily="Source Serif Pro Black" FontSize="17" Background="#FF2E2C65" BorderBrush="#FF2E2C65" Foreground="#FFF3ECEC" Click="Button_Click" Style="{DynamicResource AboutStyle}">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
             </Button>
-            <Button x:Name="Donate" Content="Donate" HorizontalAlignment="Left" Margin="366,181,0,0" VerticalAlignment="Top" Width="102" Height="32" FontFamily="Source Serif Pro Black" FontSize="17" Background="#FF2E2C65" BorderBrush="#FF2E2C65" Foreground="#FFF3ECEC" Click="Donate_Click" Style="{DynamicResource AboutStyle}">
+            <Button x:Name="Donate" Content="Donate" HorizontalAlignment="Left" Margin="366,210,0,0" VerticalAlignment="Top" Width="102" Height="32" FontFamily="Source Serif Pro Black" FontSize="17" Background="#FF2E2C65" BorderBrush="#FF2E2C65" Foreground="#FFF3ECEC" Click="Donate_Click" Style="{DynamicResource AboutStyle}">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
             </Button>
+            <Slider x:Name="volumeSlider" HorizontalAlignment="Left" Margin="268,145,0,0" VerticalAlignment="Top" Width="108" Maximum="100" SmallChange="1" LargeChange="10" IsSnapToTickEnabled="True" Ticks="0,10,20,30,40,50,60,70,80,90,100" ValueChanged="Slider_ValueChanged"/>
+            <TextBlock HorizontalAlignment="Left" Margin="24,143,0,0" TextWrapping="Wrap" Text="volume on your speakers" FontWeight="Bold" FontFamily="Source Serif Pro Black" FontSize="18" VerticalAlignment="Top"/>
+            <TextBlock x:Name="volumeTextBlock" HorizontalAlignment="Left" Margin="390,146,0,0" TextWrapping="Wrap" Text="" FontWeight="Bold" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="24,180,0,0" TextWrapping="Wrap" Text="* volume on your friends' speakers is always 100%" FontWeight="Bold" VerticalAlignment="Top" Width="292"/>
 
         </Grid>
     </Border>
