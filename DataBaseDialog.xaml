@@ -70,23 +70,23 @@
         <StackPanel>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.9*"/>
+                    <ColumnDefinition Width="0.85*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Content="MemeMic DataBase" Grid.Column="0" Background="#FF2E2C65" Foreground="#FFEEECEC" BorderBrush="#FF2E2C65" FontFamily="Source Serif Pro Black" FontSize="15" RenderTransformOrigin="0.5,0.5" Style="{DynamicResource RoundedButtonStyle}" FontWeight="Bold"/>
+                <Button Content="MemeMic DataBase" Click="MemeMicButton_Click" Grid.Column="0" Background="#FF2E2C65" Foreground="#FFEEECEC" BorderBrush="#FF2E2C65" FontFamily="Source Serif Pro Black" FontSize="14" RenderTransformOrigin="0.5,0.5" Style="{DynamicResource RoundedButtonStyle}" FontWeight="Medium"/>
                 <TextBlock Text="Our favourite memes" FontWeight="Medium" Grid.Column="1" Margin="10 0 0 0"/>
             </Grid>
             <Grid Margin="0 50 0 0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.9*"/>
+                    <ColumnDefinition Width="0.85*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Community DataBase" Grid.Column="0" Background="#FF2E2C65" Foreground="#FFEEECEC" BorderBrush="#FF2E2C65" FontFamily="Source Serif Pro Black" FontSize="15" RenderTransformOrigin="0.5,0.5" Style="{DynamicResource RoundedButtonStyle}" FontWeight="Bold"/>
+                <Button Content="Community DataBase" Click="CommunityButton_Click" Grid.Column="0" Background="#FF2E2C65" Foreground="#FFEEECEC" BorderBrush="#FF2E2C65" FontFamily="Source Serif Pro Black" FontSize="14" RenderTransformOrigin="0.5,0.5" Style="{DynamicResource RoundedButtonStyle}" FontWeight="medium"/>
                 <TextBlock Text="our Community favourite memes." FontWeight="Medium" Grid.Column="1" Margin="10 0 0 0"/>
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.96*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Feel free to add your memes" FontWeight="Medium" Grid.Column="1"/>
