@@ -247,6 +247,7 @@
             <Button  Content="Start" Grid.Column="0" Click="StartButton_Click" Background="#FF2E2C65" Foreground="#FFFCF8F8" BorderBrush="#FF2E2C65" Margin="27,338,712.6,21.2" FontFamily="Source Serif Pro Black" FontSize="22" Style="{DynamicResource RoundedButtonStyle_3}" FontWeight="Bold" />
             <Button Content="Upload / Download Memes" FontWeight="Bold" Click="MemeDataBaseButton_Click" Foreground="#FFF4EEEE" Background="#FF2E2C65" BorderBrush="#FF2E2C65" Margin="242,338,271.6,21.2" FontFamily="Source Serif Pro Black" FontSize="22" Style="{DynamicResource RoundedButtonStyle_2}"/>
             <Button Content="Options"  Click="OptionsButton_Click" Background="#FF2E2C65" Foreground="#FFEEECEC" BorderBrush="#FF2E2C65" Margin="674,338,25.6,21.2" FontFamily="Source Serif Pro Black" FontSize="22" RenderTransformOrigin="0.5,0.5" Style="{DynamicResource RoundedButtonStyle}" FontWeight="Bold"/>
+            <TextBlock Text="* It is recommended to disable noise suppresion in discord and other programs specially when playing a music meme" Foreground="Black" FontWeight="Bold" HorizontalAlignment="Left" Margin="37,317,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="801"/>
         </Grid>
     </Border>
 </Window>
