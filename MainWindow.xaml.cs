@@ -63,12 +63,14 @@ namespace MemeMic
         private void OptionsButton_Click(object sender, RoutedEventArgs e)
         {
             OptionsWindow optionsWindow = new OptionsWindow();
+            optionsWindow.Owner = this;
             optionsWindow.ShowDialog();
         }
 
         private void MemeDataBaseButton_Click(object sender, RoutedEventArgs e)
         {
             DataBaseDialog databaseDialog = new DataBaseDialog();
+            databaseDialog.Owner = this;
             databaseDialog.ShowDialog();
         }
 
