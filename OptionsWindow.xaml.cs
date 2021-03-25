@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,20 +43,18 @@ namespace MemeMic
             string pushToTalkButton = AppSetup.getInstance().readSettingsFile(AppSetup.pushToTalkLine);
             if (!pushToTalkButton.Equals(""))
             {
-                PushToTalkRadioButton.IsChecked = true;
-                DiscordKeyTextBox.Text = pushToTalkButton;
+                
             }
         }
         private void PushToTalkRadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            DiscordGrid.Visibility = Visibility.Visible;
+            
         }
         private void VoiceActivityRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             try
             {
-                DiscordKeyTextBox.Text = "";
-                DiscordGrid.Visibility = Visibility.Hidden;
+               
             }
             catch(NullReferenceException ex)
             {
@@ -65,8 +64,7 @@ namespace MemeMic
         }
         private void DiscordKeyButton_Click(object sender, RoutedEventArgs e)
         {
-            DiscordKeyTextBox.Text = "Recording..";
-            recordingGif_3.Visibility = Visibility.Visible;
+            
             isDiscordButtonClicked = true;
         }
         private void onMouseDown(object sender, MouseButtonEventArgs e)
@@ -81,8 +79,7 @@ namespace MemeMic
             }
             else if(isDiscordButtonClicked)
             {
-                DiscordKeyTextBox.Text = e.ChangedButton.ToString();
-                recordingGif_3.Visibility = Visibility.Hidden;
+                
                 isDiscordButtonClicked = false;
             }
         }
@@ -98,10 +95,19 @@ namespace MemeMic
             }
             else if(isDiscordButtonClicked)
             {
-                DiscordKeyTextBox.Text = e.Key.ToString();
-                recordingGif_3.Visibility = Visibility.Hidden;
+                
                 isDiscordButtonClicked = false;
             }
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            About_us option = new About_us();
+            option.ShowDialog();
+        }
+
+        private void Donate_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://www.paypal.com/paypalme/khalidwaleed0?fbclid=IwAR2COGQ-KzPxicq45pcY-0_qFiaUWXHplETf4lKW4xXuhx1pEjw6ml8T9DY");
         }
         private void onDispose(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -112,7 +118,8 @@ namespace MemeMic
                     MessageBoxIcon.Error);
             }
             else
-                AppSetup.getInstance().modifyButtons(ShowOverlayTextBox.Text, DiscordKeyTextBox.Text);
+                AppSetup.getInstance().modifyButtons(ShowOverlayTextBox.Text);
         }
+
     }
 }

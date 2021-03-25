@@ -100,105 +100,91 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="AboutStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF0071BC"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FF0071BC"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Border Margin="10">
-        <StackPanel Background="#FF91CD7B">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="S h o w  O v e r l a y  B u t t o n" Grid.Column="0" FontWeight="Bold" Grid.ColumnSpan="2" Margin="15,6,137.4,-5.6" FontFamily="Showcard Gothic" FontSize="14"/>
-                <TextBox x:Name="ShowOverlayTextBox" IsReadOnly="true" Focusable="False" Margin="74.4,5,177.8,-1.4" Grid.Column="1" Grid.ColumnSpan="2"/>
-                <Button x:Name="OverlayListenButton" Click="OverlayListenButton_Click" Content="L i s t e n" Grid.Column="2" Margin="73.8,1,26.8,-5.2" Background="#FF2E2C65" BorderBrush="#FF2E2C65" FontFamily="Showcard Gothic" FontSize="13" Foreground="White" Style="{DynamicResource ListenButton_1}" Height="25" VerticalAlignment="Top">
-                    <Button.Effect>
-                        <DropShadowEffect/>
-                    </Button.Effect>
-                </Button>
-            </Grid>
-            <Grid Margin="0 10 0 0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="P l a y  t h e  s e l e c t e d  m e m e" Grid.Column="0" FontWeight="Bold" Grid.ColumnSpan="2" Margin="15,11,143.4,-17.4" FontFamily="Showcard Gothic" FontSize="14"/>
-                <TextBox x:Name="PlayMemeTextBox" Text="" IsReadOnly="True" Focusable="False" Margin="75.4,10,178.2,-18.2" Grid.Column="1" Grid.ColumnSpan="2"/>
-            </Grid>
-            <Grid Margin="0,10,-0.2,0" Height="19">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="M e m e   l i s t   s c r o l l " Grid.Column="0" FontWeight="Bold" Grid.ColumnSpan="2" Margin="17,26,158.2,-29.4" FontFamily="Showcard Gothic" FontSize="14"/>
-                <TextBox Text="Mouse Scroll Wheel" IsReadOnly="True" Focusable="False" Margin="75.4,24,177.8,-22" Grid.Column="1" Grid.ColumnSpan="2" Height="19.2"/>
-            </Grid>
-            <TextBlock Text="W h a t   v o i c e    o p t i o n   d o   y o u    u s e    i n    d i s c o r d  ?" FontWeight="Bold" Margin="13,65,0,0" FontFamily="Showcard Gothic" Height="18" HorizontalAlignment="Left" Width="453" FontSize="13"/>
-            <Grid Margin="0 10 0 0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <RadioButton x:Name="VoiceActivityRadioButton" IsChecked="True" Content="Voice Activity" Grid.Column="0"  Checked="VoiceActivityRadioButton_Checked" Margin="24,8,19.8,-16.2"/>
-                <RadioButton x:Name="PushToTalkRadioButton"  Content="Push to talk" Checked="PushToTalkRadioButton_Checked" Grid.ColumnSpan="2" Margin="338,8,-0.2,-16.2"/>
-            </Grid>
-            <Grid x:Name="DiscordGrid" Margin="0 10 0 0" Visibility="Hidden">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="P u s h   t o   t a l k   b u t t o n   i n   d i s c o r d" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="2" Margin="7,41,103.4,-43.4" FontFamily="Showcard Gothic"/>
-                <TextBox x:Name="DiscordKeyTextBox" Grid.Column="1" Margin="98.4,39,150.2,-40.2" Grid.ColumnSpan="2" IsReadOnly="True" Height="19.2"/>
-                <Button x:Name="DiscordKeyButton" Click="DiscordKeyButton_Click" Content="L i s t e n" Grid.Column="2" Margin="0,0,26.8,-54.8" Style="{DynamicResource ListenButton_2}" FontFamily="Showcard Gothic" Foreground="#FFF7F7F7" Background="#FF2E2C65" BorderBrush="#FF2E2C65" Height="51" VerticalAlignment="Bottom" FontSize="13" HorizontalAlignment="Right" Width="94" >
-                    <Button.Effect>
-                        <DropShadowEffect/>
-                    </Button.Effect>
-                </Button>
-            </Grid>
-            <Grid Margin="0,0,-0.2,0">
-                <Image x:Name="recordingGif_1" gif:ImageBehavior.RepeatBehavior="Forever"
-       gif:ImageBehavior.AnimatedSource="Resources/recordingIcon.gif" Margin="417,-192,155.8,240.8" RenderTransformOrigin="0.5,0.5" Visibility="Hidden" Source="recordingIcon.gif" >
-                    <Image.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="-1"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Image.RenderTransform>
-                </Image>
-                <Image x:Name="recordingGif_2" gif:ImageBehavior.RepeatBehavior="Forever"
-                    gif:ImageBehavior.AnimatedSource="Resources/recordingIcon.gif" Margin="417,-154,155.3,202.8" RenderTransformOrigin="0.5,0.5" Visibility="Hidden" Source="recordingIcon.gif" >
-                    <Image.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="-1"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Image.RenderTransform>
-                </Image>
-                <Image x:Name="recordingGif_3" gif:ImageBehavior.RepeatBehavior="Forever"
-                    gif:ImageBehavior.AnimatedSource="Resources/recordingIcon.gif" Margin="443,25,129,23.6" RenderTransformOrigin="0.5,0.5" Visibility="Hidden" Source="Resources/recordingIcon.gif" >
-                    <Image.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="-1"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Image.RenderTransform>
-                </Image>
+        <Grid Background="#FF91CD7B">
+            <TextBlock Text="Show  Overlay  Button"  FontWeight="Bold" Margin="24,14,360.8,212.4" FontFamily="Source Serif Pro Black" FontSize="18"/>
+            <TextBox x:Name="ShowOverlayTextBox" IsReadOnly="true" Focusable="False" Margin="268,17,184.8,212" />
 
-            </Grid>
-            
-           
-            
+            <TextBlock Text="Play  the  selected  meme"  FontWeight="Bold" Margin="24,55,329.8,163.4" FontFamily="Source Serif Pro Black" FontSize="18"/>
+            <TextBox x:Name="PlayMemeTextBox" Text="" IsReadOnly="True" Focusable="False" Margin="268,58,184.8,171"/>
+            <TextBlock Text="Meme List Scroll" Grid.Column="0" FontWeight="Bold" Margin="24,100,407.8,127.4" FontFamily="Source Serif Pro Black" FontSize="18"/>
+            <TextBox Text="Mouse Scroll Wheel" IsReadOnly="True" Focusable="False" Margin="268,100,184.8,127.4"/>
+            <Button x:Name="OverlayListenButton" Click="OverlayListenButton_Click" Content="L i s t e n" Margin="454,10,17.8,0" Background="#FF2E2C65" BorderBrush="#FF2E2C65" FontFamily="Source Serif Pro Black" FontSize="14" Foreground="White" Style="{DynamicResource ListenButton_1}" Height="31" VerticalAlignment="Top">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+            <Image x:Name="recordingGif_1" gif:ImageBehavior.RepeatBehavior="Forever"
+       gif:ImageBehavior.AnimatedSource="Resources/recordingIcon.gif" Margin="413,-74,155.8,122.4" RenderTransformOrigin="0.5,0.5" Visibility="Hidden" Source="Resources/recordingIcon.gif" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="-1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Image x:Name="recordingGif_2" gif:ImageBehavior.RepeatBehavior="Forever"
+                    gif:ImageBehavior.AnimatedSource="Resources/recordingIcon.gif" Margin="413,-33,155.8,81.4" RenderTransformOrigin="0.5,0.5" Visibility="Hidden" Source="Resources/recordingIcon.gif" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="-1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Button x:Name="About" Content="About Us" HorizontalAlignment="Left" Margin="131,181,0,0" VerticalAlignment="Top" Width="102" Height="32" FontFamily="Source Serif Pro Black" FontSize="17" Background="#FF2E2C65" BorderBrush="#FF2E2C65" Foreground="#FFF3ECEC" Click="Button_Click" Style="{DynamicResource AboutStyle}">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+            <Button x:Name="Donate" Content="Donate" HorizontalAlignment="Left" Margin="366,181,0,0" VerticalAlignment="Top" Width="102" Height="32" FontFamily="Source Serif Pro Black" FontSize="17" Background="#FF2E2C65" BorderBrush="#FF2E2C65" Foreground="#FFF3ECEC" Click="Donate_Click" Style="{DynamicResource AboutStyle}">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
 
-
-        </StackPanel>
+        </Grid>
     </Border>
 </Window>

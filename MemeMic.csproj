@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\ILMerge.3.0.41\build\ILMerge.props" Condition="Exists('..\packages\ILMerge.3.0.41\build\ILMerge.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -40,13 +39,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EventHook, Version=1.4.113.0, Culture=neutral, PublicKeyToken=2c14189d5ed28bd7, processorArchitecture=MSIL">
-      <HintPath>..\packages\EventHook.1.4.113\lib\net45\EventHook.dll</HintPath>
+      <HintPath>packages\EventHook.1.4.113\lib\net45\EventHook.dll</HintPath>
     </Reference>
     <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
+      <HintPath>packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
     </Reference>
     <Reference Include="Ookii.Dialogs.Wpf, Version=3.0.0.0, Culture=neutral, PublicKeyToken=66aa232afad40158, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ookii.Dialogs.Wpf.3.1.0\lib\net45\Ookii.Dialogs.Wpf.dll</HintPath>
+      <HintPath>packages\Ookii.Dialogs.Wpf.3.1.0\lib\net45\Ookii.Dialogs.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -67,7 +66,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
-      <HintPath>..\packages\WpfAnimatedGif.2.0.0\lib\net40\WpfAnimatedGif.dll</HintPath>
+      <HintPath>packages\WpfAnimatedGif.2.0.0\lib\net40\WpfAnimatedGif.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +87,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="About_us.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -99,6 +102,10 @@
     <Compile Include="EventListener.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="About_us.xaml.cs">
+      <DependentUpon>About_us.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="OptionsWindow.xaml">
@@ -154,6 +161,5 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\ILMerge.3.0.41\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILMerge.3.0.41\build\ILMerge.props'))" />
   </Target>
 </Project>
