@@ -22,7 +22,6 @@ namespace MemeMic
     public partial class OptionsWindow : Window
     {
         bool isOverlayButtonClicked = false;
-        bool isDiscordButtonClicked = false;
         public OptionsWindow()
         {
             InitializeComponent();
@@ -40,32 +39,9 @@ namespace MemeMic
         {
             ShowOverlayTextBox.Text = AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine);
             PlayMemeTextBox.Text = AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine);
-            string pushToTalkButton = AppSetup.getInstance().readSettingsFile(AppSetup.pushToTalkLine);
-            if (!pushToTalkButton.Equals(""))
-            {
-                
-            }
-        }
-        private void PushToTalkRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            
-        }
-        private void VoiceActivityRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-               
-            }
-            catch(NullReferenceException ex)
-            {
-                ex.ToString();
-            }
-            
-        }
-        private void DiscordKeyButton_Click(object sender, RoutedEventArgs e)
-        {
-            
-            isDiscordButtonClicked = true;
+            double speakerVolume = 100*double.Parse(AppSetup.getInstance().readSettingsFile(AppSetup.speakerVolumeLine));
+            volumeTextBlock.Text = speakerVolume.ToString();
+            volumeSlider.Value = speakerVolume;
         }
         private void onMouseDown(object sender, MouseButtonEventArgs e)
         {                               // the event is running all the time but we only need to get the pressed key after
@@ -76,11 +52,6 @@ namespace MemeMic
                 recordingGif_1.Visibility = Visibility.Hidden;
                 recordingGif_2.Visibility = Visibility.Hidden;
                 isOverlayButtonClicked = false;
-            }
-            else if(isDiscordButtonClicked)
-            {
-                
-                isDiscordButtonClicked = false;
             }
         }
         private void onKeyboardDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -93,11 +64,6 @@ namespace MemeMic
                 recordingGif_2.Visibility = Visibility.Hidden;
                 isOverlayButtonClicked = false;
             }
-            else if(isDiscordButtonClicked)
-            {
-                
-                isDiscordButtonClicked = false;
-            }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -107,7 +73,7 @@ namespace MemeMic
 
         private void Donate_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://www.paypal.com/paypalme/khalidwaleed0?fbclid=IwAR2COGQ-KzPxicq45pcY-0_qFiaUWXHplETf4lKW4xXuhx1pEjw6ml8T9DY");
+            Process.Start("https://www.paypal.com/paypalme/khalidwaleed0");
         }
         private void onDispose(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -118,8 +84,12 @@ namespace MemeMic
                     MessageBoxIcon.Error);
             }
             else
-                AppSetup.getInstance().modifyButtons(ShowOverlayTextBox.Text);
+                AppSetup.getInstance().modifyButtonsAndVolume(ShowOverlayTextBox.Text,Convert.ToString(volumeSlider.Value/100));
         }
 
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            volumeTextBlock.Text = Convert.ToString(volumeSlider.Value)+"%";
+        }
     }
 }

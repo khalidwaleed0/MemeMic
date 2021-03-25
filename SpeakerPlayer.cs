@@ -11,8 +11,8 @@ namespace MemeMic
     {
         WaveOutEvent speakerPlayer = new WaveOutEvent();
         public SpeakerPlayer()
-        {
-            speakerPlayer.Volume = 0.30F;
+        {                                                          //max volume = 1.0F
+            speakerPlayer.Volume = float.Parse(AppSetup.getInstance().readSettingsFile(AppSetup.speakerVolumeLine));
             speakerPlayer.DeviceNumber = 0;                        // -1 or 0 mean the default playback device
         }
         public void play(string path)

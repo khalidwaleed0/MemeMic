@@ -12,7 +12,7 @@ namespace MemeMic
         public List<string> filteredMemeFiles = new List<string>();
         public const byte pathLine = 0;
         public const byte overlayButtonLine = 1;
-        public const byte pushToTalkLine = 2;
+        public const byte speakerVolumeLine = 2;
         private string directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Local\MemeMic";
         public string settingsFilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Local\MemeMic\settings.txt";
         
@@ -33,10 +33,10 @@ namespace MemeMic
             if (!File.Exists(settingsFilePath))
                 createSettingsFile();
         }
-        public void createSettingsFile(string path = "", string overlayButton = "", string pushToTalkButton = "")
+        public void createSettingsFile(string path = "", string overlayButton = "", string speakerVolume = "0.3")
         {
             TextWriter writer = new StreamWriter(settingsFilePath);
-            writer.WriteLine(path + "," + overlayButton + "," + pushToTalkButton);
+            writer.WriteLine(path + "," + overlayButton + "," + speakerVolume);
             writer.Close();
         }
         public string readSettingsFile(byte lineNumber)
@@ -49,11 +49,11 @@ namespace MemeMic
         }
         public void modifyFolderPath(string newPath)
         {
-            createSettingsFile(newPath, readSettingsFile(overlayButtonLine), readSettingsFile(pushToTalkLine));
+            createSettingsFile(newPath, readSettingsFile(overlayButtonLine), readSettingsFile(speakerVolumeLine));
         }
-        public void modifyButtons(string overlayButton)
+        public void modifyButtonsAndVolume(string overlayButton, string speakerVolume)
         {
-            createSettingsFile(readSettingsFile(pathLine), overlayButton);
+            createSettingsFile(readSettingsFile(pathLine), overlayButton, speakerVolume);
         }
         public void filterMemeFiles()
         {
