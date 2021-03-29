@@ -8,9 +8,9 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("MemeMic")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("an app for sending memes through mic")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("https://github.com/khalidwaleed0/MemeMic")]
 [assembly: AssemblyProduct("MemeMic")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
@@ -53,3 +53,4 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguage("en")]
