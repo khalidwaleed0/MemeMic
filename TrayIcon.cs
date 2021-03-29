@@ -16,7 +16,7 @@ namespace MemeMic
         }
         private TrayIcon()
         {
-            Stream imageStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MemeMic.Resources.small_logo.ico");
+            Stream imageStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MemeMic.Resources.Tray_Logo.ico");
             notifyIcon.Icon = new System.Drawing.Icon(imageStream);
             notifyIcon.Text = "MemeMic";
             notifyIcon.ContextMenuStrip = new ContextMenuStrip();
