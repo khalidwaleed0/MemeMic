@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 
 namespace MemeMic
@@ -19,7 +14,11 @@ namespace MemeMic
             {
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
-                TrayIcon.getInstance().Show();
+                UpdateWindow updateWindow = new UpdateWindow();
+                Updater updater = new Updater(updateWindow);
+                Thread updateThread = new Thread(() => { updater.update(); });
+                updateThread.Start();
+                updateWindow.ShowDialog();
             }
             else
             {
