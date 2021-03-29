@@ -1,21 +1,5 @@
-﻿using NAudio.Wave;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using System.Windows.Forms;
-using System.Threading;
 
 namespace MemeMic
 {
@@ -50,6 +34,7 @@ namespace MemeMic
                 }
                 else
                 {
+                    TrayIcon.getInstance().Show();
                     isClosedNotExited = true;
                     Close();
                     EventListener listener = new EventListener();
@@ -92,11 +77,8 @@ namespace MemeMic
 
         private void onClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (!isClosedNotExited)
-            {
-                TrayIcon.getInstance().notifyIcon.Dispose();
+            if(!isClosedNotExited)
                 System.Windows.Application.Current.Shutdown();
-            }
             //if it is closed by the x button then it will shutdown
             //otherwise, it will just close the window but keep running in background
         }
