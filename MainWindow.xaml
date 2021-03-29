@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MemeMic"
         mc:Ignorable="d"
-        Title="MemeMic" Height="452.053" Width="904.105"  WindowStartupLocation="CenterScreen" OpacityMask="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" ResizeMode="CanMinimize" Background="#FF3B4456" >
+        Title="MemeMic v1.0.0" Height="452.053" Width="904.105"  WindowStartupLocation="CenterScreen" Closing="onClosing" OpacityMask="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" ResizeMode="CanMinimize" Background="#FF3B4456" Icon="Resources/App_Logo.ico" >
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">

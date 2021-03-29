@@ -6,7 +6,7 @@
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:local="clr-namespace:MemeMic"
         mc:Ignorable="d"
-        Title="Options" Height="308.364" Width="619.151" WindowStartupLocation="CenterScreen" MouseDown="onMouseDown" KeyDown="onKeyboardDown" Closing="onDispose" Background="#FF3B4456" ResizeMode="CanMinimize">
+        Title="Options" Height="308.364" Width="619.151" WindowStartupLocation="CenterScreen" MouseDown="onMouseDown" KeyDown="onKeyboardDown" Closing="onDispose" Background="#FF3B4456" ResizeMode="CanMinimize" Icon="Resources/App_Logo.ico">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">

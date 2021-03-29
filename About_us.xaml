@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MemeMic"
         mc:Ignorable="d"
-        Title="About_us" Height="294.013" Width="522.689" WindowStartupLocation="CenterScreen">
+        Title="About_us" Height="294.013" Width="522.689" WindowStartupLocation="CenterScreen" Icon="Resources/App_Logo.ico">
     <Grid Background="#FF91CD7B">
         <TextBlock HorizontalAlignment="Left" Margin="20,17,0,0" TextWrapping="Wrap" Text="Developers :" VerticalAlignment="Top" FontFamily="Source Serif Pro Black" FontSize="22" Height="38" Width="149" />
         <TextBlock Margin="33,55,374,185.8">           
