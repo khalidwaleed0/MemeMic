@@ -1,6 +1,6 @@
 # MemeMic
  Plays any audio or video through your mic (suitable for discord and online lectures)
-<img src="https://user-images.githubusercontent.com/54943086/113522809-f8b8ca80-95a3-11eb-80c6-842b8dcabdd7.png" width=100/>
+ <a href="https://www.paypal.com/paypalme/khalidwaleed0"><img src="https://user-images.githubusercontent.com/54943086/113522809-f8b8ca80-95a3-11eb-80c6-842b8dcabdd7.png" width=100/></a>
 <br>
 <br>
 ![MainWindow ScreenShot](https://user-images.githubusercontent.com/54943086/113523137-46363700-95a6-11eb-9617-5a684c9a0942.png)
