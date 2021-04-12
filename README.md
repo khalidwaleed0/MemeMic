@@ -7,7 +7,7 @@
 ![overlay screenshot](https://user-images.githubusercontent.com/54943086/113523251-f3a94a80-95a6-11eb-891e-ea051c8e380c.png)
 ## Features
 * You can play a meme and talk at the same time.
-* You can play a meme without ditracting you from your game.
+* You can play a meme without distracting you from your game.
 * supports all chat & meeting programs.
 * supports mp3,wav,mp4,m4a,mkv and more..
 ## Requirements
