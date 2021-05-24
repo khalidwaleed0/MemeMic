@@ -11,7 +11,7 @@
 * supports all chat & meeting programs.
 * supports mp3,wav,mp4,m4a,mkv and more..
 ## Requirements
-* ![VB-CABLE Virtual Audio Device](https://vb-audio.com/Cable/).
+* [VB-CABLE Virtual Audio Device](https://vb-audio.com/Cable/).
 * .NetFramework 4.7.2 or higher(it is already pre-installed on latest versions of Windows 10).
 * In games,use borderless mode instead of fullscreen mode so that MemeMic overlay can be on top of it.
 ## How to install and use (Click the image)
