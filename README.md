@@ -13,7 +13,7 @@
 ## Requirements
 * [VB-CABLE Virtual Audio Device](https://vb-audio.com/Cable/).
 * .NetFramework 4.7.2 or higher(it is already pre-installed on latest versions of Windows 10).
-* In games,use borderless mode instead of fullscreen mode so that MemeMic overlay can be on top of it.
+* In games,you must use borderless mode instead of fullscreen mode so that MemeMic overlay can be on top of it.
 ## How to install and use (Click the image)
 [![MemeMic](https://img.youtube.com/vi/EYm-vHmgWEk/0.jpg)](https://www.youtube.com/watch?v=EYm-vHmgWEk)
 ## How to build from source:
