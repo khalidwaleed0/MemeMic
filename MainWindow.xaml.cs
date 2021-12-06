@@ -5,7 +5,6 @@ namespace MemeMic
 {
     public partial class MainWindow : Window
     {
-        //private readonly OverlayWindow overlay = new OverlayWindow();
         private bool isClosedNotExited = false;
         public MainWindow()
         {
