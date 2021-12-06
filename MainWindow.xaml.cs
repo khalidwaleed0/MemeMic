@@ -3,9 +3,6 @@ using System.Windows.Forms;
 
 namespace MemeMic
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         OverlayWindow overlay = new OverlayWindow();
@@ -20,7 +17,7 @@ namespace MemeMic
         {
             if (AppSetup.getInstance().readSettingsFile(AppSetup.pathLine).Equals("") || AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine).Equals(""))
             {
-                System.Windows.Forms.MessageBox.Show("Make sure to choose the folder meme\nand the overlay button"
+                System.Windows.Forms.MessageBox.Show("Make sure to choose the folder containing your memes\nand the overlay button"
                     , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
