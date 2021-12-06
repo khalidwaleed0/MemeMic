@@ -10,12 +10,12 @@ namespace MemeMic
         public KeyboardWatcher keyboardWatcher;
         public MouseWatcher mouseWatcher;
         private string overlayState = "Hidden";
-        private OverlayWindow overlay = new OverlayWindow();
-        private static PlayingOverlay playingOverlay = new PlayingOverlay();
-        private MicPlayer micPlayer = new MicPlayer(playingOverlay);
+        private readonly OverlayWindow overlay = new OverlayWindow();
+        private static readonly PlayingOverlay playingOverlay = new PlayingOverlay();
+        private readonly MicPlayer micPlayer = new MicPlayer(playingOverlay);
         private SpeakerPlayer speakerPlayer = new SpeakerPlayer();
         private int memeIndex = 0;
-        public void captureKeyboardEvent()
+        public void CaptureKeyboardEvent()
         {
             string savedButton = AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine);
             keyboardWatcher = eventHookFactory.GetKeyboardWatcher();
@@ -23,17 +23,17 @@ namespace MemeMic
             keyboardWatcher.OnKeyInput += (s, e) =>
             {
                 if(e.KeyData.Keyname.ToString().Equals(savedButton) && e.KeyData.EventType.ToString().Equals("down"))
-                    changeOverlayState();
+                    ChangeOverlayState();
             };
         }
-        public void captureMouseEvent()
+        public void CaptureMouseEvent()
         {
             string savedButton = AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine);
             string correctMouseData = "";
             string correctMouseButton = "";
             const string mouseWheelUpData = "7864320";
             const string mouseWheelDownData = "4287102976";
-            get_SavedMouseButton_Data(savedButton, ref correctMouseData, ref correctMouseButton);
+            Get_SavedMouseButton_Data(savedButton, ref correctMouseData, ref correctMouseButton);
             mouseWatcher = eventHookFactory.GetMouseWatcher();
             mouseWatcher.Start();
             mouseWatcher.OnMouseInput += (s, e) =>
@@ -43,22 +43,22 @@ namespace MemeMic
                 if(overlayState.Equals("Shown"))
                 {
                     if (mouseInputData.Equals(mouseWheelDownData))
-                        scrollDown();
+                        ScrollDown();
                     else if (mouseInputData.Equals(mouseWheelUpData))
-                        scrollUp();
+                        ScrollUp();
                 }
 
                 if (savedButton.Contains("XButton"))
                 {
                     if (mouseInputData.Equals(correctMouseData) && mouseInputName.Contains("DOWN"))
-                        changeOverlayState();
+                        ChangeOverlayState();
                 }
                 else if(mouseInputName.Equals(correctMouseButton))
-                        changeOverlayState();
+                        ChangeOverlayState();
             };
         }
 
-        private void get_SavedMouseButton_Data(string savedButton, ref string correctMouseData, ref string correctMouseButton)
+        private void Get_SavedMouseButton_Data(string savedButton, ref string correctMouseData, ref string correctMouseButton)
         {
             switch (savedButton)
             {
@@ -74,14 +74,14 @@ namespace MemeMic
                     break;
             }
         }
-        private void changeOverlayState()
+        private void ChangeOverlayState()
         {
             switch (overlayState)
             {
                 case "Hidden":
                     Dispatcher.Invoke(() => { 
                         overlay.Show();
-                        overlay.highlightText(0);
+                        overlay.HighlightText(0);
                     });
                     overlayState = "Shown";
                     memeIndex = 0;
@@ -90,7 +90,7 @@ namespace MemeMic
                     micPlayer.play(AppSetup.getInstance().filteredMemeFiles[memeIndex]);
                     speakerPlayer.play(AppSetup.getInstance().filteredMemeFiles[memeIndex]);
                     Dispatcher.Invoke(() => {
-                        overlay.unhighlightText(memeIndex);
+                        overlay.UnhighlightText(memeIndex);
                         overlay.Hide();
                         playingOverlay.Show();
                     });
@@ -106,31 +106,31 @@ namespace MemeMic
                     break;
             }
         }
-        private void scrollDown()
+        private void ScrollDown()
         {
             if (memeIndex != (AppSetup.getInstance().filteredMemeFiles.Count - 1))
             {
                 memeIndex++;
                 Dispatcher.Invoke(() =>
                 {
-                    overlay.unhighlightText(memeIndex - 1);
-                    overlay.highlightText(memeIndex);
+                    overlay.UnhighlightText(memeIndex - 1);
+                    overlay.HighlightText(memeIndex);
                 });
             }
         }
-        private void scrollUp()
+        private void ScrollUp()
         {
             if (memeIndex != 0)
             {
                 memeIndex--;
                 Dispatcher.Invoke(() =>
                 {
-                    overlay.unhighlightText(memeIndex + 1);
-                    overlay.highlightText(memeIndex);
+                    overlay.UnhighlightText(memeIndex + 1);
+                    overlay.HighlightText(memeIndex);
                 });
             }
         }
-        public void closeListener()
+        public void CloseListener()
         {
             keyboardWatcher.Stop();
             mouseWatcher.Stop();
