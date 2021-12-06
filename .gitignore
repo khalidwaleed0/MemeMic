@@ -1,6 +1,6 @@
 bin/
 obj/
-.vs/MemeMic/v16/.suo
+.vs/
 packages/
 MemeMic.sln
 MemeMic.csproj
