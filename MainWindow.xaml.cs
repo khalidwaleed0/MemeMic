@@ -5,7 +5,7 @@ namespace MemeMic
 {
     public partial class MainWindow : Window
     {
-        OverlayWindow overlay = new OverlayWindow();
+        //private readonly OverlayWindow overlay = new OverlayWindow();
         private bool isClosedNotExited = false;
         public MainWindow()
         {
@@ -15,7 +15,8 @@ namespace MemeMic
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            if (AppSetup.getInstance().readSettingsFile(AppSetup.pathLine).Equals("") || AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine).Equals(""))
+            if (AppSetup.getInstance().readSettingsFile(AppSetup.pathLine).Equals("") ||
+                AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine).Equals(""))
             {
                 System.Windows.Forms.MessageBox.Show("Make sure to choose the folder containing your memes\nand the overlay button"
                     , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -33,11 +34,10 @@ namespace MemeMic
                 {
                     TrayIcon.getInstance().Show();
                     isClosedNotExited = true;
-                    Close();
                     EventListener listener = new EventListener();
-                    string overlayButton = AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine);
-                    listener.captureMouseEvent();
-                    listener.captureKeyboardEvent();
+                    listener.CaptureMouseEvent();
+                    listener.CaptureKeyboardEvent();
+                    Close();
                 }
             }
         }
@@ -72,7 +72,7 @@ namespace MemeMic
             }
         }
 
-        private void onClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if(!isClosedNotExited)
                 System.Windows.Application.Current.Shutdown();
