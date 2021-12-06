@@ -10,7 +10,7 @@ namespace MemeMic
 {
     public partial class OverlayWindow : Window
     {
-        private List<TextBlock> textBlocks = new List<TextBlock>(); 
+        private readonly List<TextBlock> textBlocks = new List<TextBlock>();
 
         public OverlayWindow()
         {
@@ -24,7 +24,7 @@ namespace MemeMic
                 Top = workingArea.Top;
             }
             catch (Exception) { }
-            displayMemes();
+            DisplayMemes();
         }
         protected override void OnSourceInitialized(EventArgs e)
         {
@@ -32,28 +32,28 @@ namespace MemeMic
             var hwnd = new WindowInteropHelper(this).Handle;
             WindowsServices.SetWindowExTransparent(hwnd);
         }
-        private void displayMemes()
+        private void DisplayMemes()
         {
             foreach (string filePath in AppSetup.getInstance().filteredMemeFiles)
             {
                 string[] pathParts = filePath.Split(new char[] { '\\', '.' });
                 string memeName = pathParts[pathParts.Length - 2];
-                addTextBlock(memeName);
-                highlightText(0);
+                AddTextBlock(memeName);
+                HighlightText(0);
             }
         }
-        private void addTextBlock(string text)
+        private void AddTextBlock(string text)
         {
             TextBlock newTextBlock = new TextBlock();
             newTextBlock.Text = text;
             stackPanel.Children.Add(newTextBlock);
             textBlocks.Add(newTextBlock);
         }
-        public void highlightText(int i)
+        public void HighlightText(int i)
         {
             textBlocks[i].Foreground = new SolidColorBrush(Colors.Aqua);
         }
-        public void unhighlightText(int i)
+        public void UnhighlightText(int i)
         {
             textBlocks[i].Foreground = new SolidColorBrush(Colors.White);
         }
