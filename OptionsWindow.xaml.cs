@@ -6,15 +6,16 @@ using System.Windows.Input;
 
 namespace MemeMic
 {
-    /// <summary>
-    /// Interaction logic for OptionsWindow.xaml
-    /// </summary>
     public partial class OptionsWindow : Window
     {
         bool isOverlayButtonClicked = false;
         public OptionsWindow()
         {
             InitializeComponent();
+            for(int i=1; i<Screen.AllScreens.Length ; i++)
+            {
+                screenComboBox.Items.Add("Screen "+(i+1));
+            }
             displayLatestSettings();
         }
         private void OverlayListenButton_Click(object sender, RoutedEventArgs e)
@@ -74,7 +75,8 @@ namespace MemeMic
                     MessageBoxIcon.Error);
             }
             else
-                AppSetup.getInstance().modifyButtonsAndVolume(ShowOverlayTextBox.Text,Convert.ToString(volumeSlider.Value/100));
+                AppSetup.getInstance().modifyOptions(ShowOverlayTextBox.Text,Convert.ToString(volumeSlider.Value/100),
+                    screenComboBox.SelectedIndex.ToString());
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

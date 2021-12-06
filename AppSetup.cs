@@ -13,6 +13,7 @@ namespace MemeMic
         public const byte pathLine = 0;
         public const byte overlayButtonLine = 1;
         public const byte speakerVolumeLine = 2;
+        public const byte screenNumberLine = 3;
         private string directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Local\MemeMic";
         public string settingsFilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Local\MemeMic\settings.txt";
         
@@ -33,10 +34,10 @@ namespace MemeMic
             if (!File.Exists(settingsFilePath))
                 createSettingsFile();
         }
-        public void createSettingsFile(string path = "", string overlayButton = "", string speakerVolume = "0.3")
+        public void createSettingsFile(string path = "", string overlayButton = "", string speakerVolume = "0.3",string screenNumber = "0")
         {
             TextWriter writer = new StreamWriter(settingsFilePath);
-            writer.WriteLine(path + "," + overlayButton + "," + speakerVolume);
+            writer.WriteLine(path + "," + overlayButton + "," + speakerVolume + "," + screenNumber);
             writer.Close();
         }
         public string readSettingsFile(byte lineNumber)
@@ -49,17 +50,18 @@ namespace MemeMic
         }
         public void modifyFolderPath(string newPath)
         {
-            createSettingsFile(newPath, readSettingsFile(overlayButtonLine), readSettingsFile(speakerVolumeLine));
+            createSettingsFile(newPath, readSettingsFile(overlayButtonLine), readSettingsFile(speakerVolumeLine)
+                ,readSettingsFile(screenNumberLine));
         }
-        public void modifyButtonsAndVolume(string overlayButton, string speakerVolume)
+        public void modifyOptions(string overlayButton, string speakerVolume, string screenNumber)
         {
-            createSettingsFile(readSettingsFile(pathLine), overlayButton, speakerVolume);
+            createSettingsFile(readSettingsFile(pathLine), overlayButton, speakerVolume, screenNumber);
         }
         public void filterMemeFiles()
         {
             string supportedExtensions = "*.mp3,*.aac,*.wav,*.webm,*.m4a,*.mp4,*.mkv";
             string[] memeFiles = Directory.GetFiles(readSettingsFile(pathLine));
-            foreach (string supportedMemeFile in memeFiles.Where(s => supportedExtensions.Contains(System.IO.Path.GetExtension(s).ToLower())))
+            foreach (string supportedMemeFile in memeFiles.Where(s => supportedExtensions.Contains(Path.GetExtension(s).ToLower())))
             {
                 filteredMemeFiles.Add(supportedMemeFile);
             }

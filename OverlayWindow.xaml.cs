@@ -15,6 +15,15 @@ namespace MemeMic
         public OverlayWindow()
         {
             InitializeComponent();
+            try
+            {
+                var secondaryScreen = System.Windows.Forms.Screen.AllScreens
+                    [Convert.ToInt32(AppSetup.getInstance().readSettingsFile(AppSetup.screenNumberLine))];
+                var workingArea = secondaryScreen.WorkingArea;
+                Left = workingArea.Left;
+                Top = workingArea.Top;
+            }
+            catch (Exception) { }
             displayMemes();
         }
         protected override void OnSourceInitialized(EventArgs e)

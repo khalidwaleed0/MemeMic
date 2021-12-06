@@ -188,7 +188,9 @@
             <TextBlock HorizontalAlignment="Left" Margin="24,143,0,0" TextWrapping="Wrap" Text="volume on your speakers" FontWeight="Bold" FontFamily="Source Serif Pro Black" FontSize="18" VerticalAlignment="Top"/>
             <TextBlock x:Name="volumeTextBlock" HorizontalAlignment="Left" Margin="390,146,0,0" TextWrapping="Wrap" Text="" FontWeight="Bold" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="24,180,0,0" TextWrapping="Wrap" Text="* volume on your friends' speakers is always 100%" FontWeight="Bold" VerticalAlignment="Top" Width="292"/>
-
+            <ComboBox x:Name="screenComboBox" SelectedIndex="0" HorizontalAlignment="Left" Margin="448,144,0,0" VerticalAlignment="Top" Width="127">
+                <ComboBoxItem Content="Screen 1"/>
+            </ComboBox>
         </Grid>
     </Border>
 </Window>
