@@ -12,10 +12,10 @@ namespace MemeMic
         WaveOutEvent speakerPlayer = new WaveOutEvent();
         public SpeakerPlayer()
         {                                                          //max volume = 1.0F
-            speakerPlayer.Volume = float.Parse(AppSetup.getInstance().ReadSettingsFile(AppSetup.speakerVolumeLine));
+            speakerPlayer.Volume = float.Parse(AppSetup.GetInstance().ReadSettingsFile(AppSetup.speakerVolumeLine));
             speakerPlayer.DeviceNumber = 0;                        // -1 or 0 mean the default playback device
         }
-        public void play(string path)
+        public void Play(string path)
         {
             MediaFoundationReader reader = new MediaFoundationReader(path);
             speakerPlayer.Init(reader);

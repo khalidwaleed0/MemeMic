@@ -8,7 +8,7 @@ namespace MemeMic
     {
         private static TrayIcon trayIcon = null;
         public NotifyIcon notifyIcon = new NotifyIcon();
-        public static TrayIcon getInstance()
+        public static TrayIcon GetInstance()
         {
             if (trayIcon == null)
                 trayIcon = new TrayIcon();
@@ -20,9 +20,9 @@ namespace MemeMic
             notifyIcon.Icon = new System.Drawing.Icon(imageStream);
             notifyIcon.Text = "MemeMic";
             notifyIcon.ContextMenuStrip = new ContextMenuStrip();
-            notifyIcon.ContextMenuStrip.Items.Add("Exit", null, onExitClick);
+            notifyIcon.ContextMenuStrip.Items.Add("Exit", null, OnExitClick);
         }
-        private void onExitClick(object sender, System.EventArgs e)
+        private void OnExitClick(object sender, System.EventArgs e)
         {
             notifyIcon.Dispose();
             System.Windows.Application.Current.Shutdown();

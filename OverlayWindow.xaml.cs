@@ -18,7 +18,7 @@ namespace MemeMic
             try
             {
                 var secondaryScreen = System.Windows.Forms.Screen.AllScreens
-                    [Convert.ToInt32(AppSetup.getInstance().ReadSettingsFile(AppSetup.screenNumberLine))];
+                    [Convert.ToInt32(AppSetup.GetInstance().ReadSettingsFile(AppSetup.screenNumberLine))];
                 var workingArea = secondaryScreen.WorkingArea;
                 Left = workingArea.Left;
                 Top = workingArea.Top;
@@ -34,7 +34,7 @@ namespace MemeMic
         }
         private void DisplayMemes()
         {
-            foreach (string filePath in AppSetup.getInstance().filteredMemeFiles)
+            foreach (string filePath in AppSetup.GetInstance().filteredMemeFiles)
             {
                 string[] pathParts = filePath.Split(new char[] { '\\', '.' });
                 string memeName = pathParts[pathParts.Length - 2];

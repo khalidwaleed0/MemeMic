@@ -9,21 +9,21 @@ namespace MemeMic
         public MainWindow()
         {
             InitializeComponent();
-            DirectoryTextBox.Text = AppSetup.getInstance().ReadSettingsFile(AppSetup.pathLine);
+            DirectoryTextBox.Text = AppSetup.GetInstance().ReadSettingsFile(AppSetup.pathLine);
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            if (AppSetup.getInstance().ReadSettingsFile(AppSetup.pathLine).Equals("") ||
-                AppSetup.getInstance().ReadSettingsFile(AppSetup.overlayButtonLine).Equals(""))
+            if (AppSetup.GetInstance().ReadSettingsFile(AppSetup.pathLine).Equals("") ||
+                AppSetup.GetInstance().ReadSettingsFile(AppSetup.overlayButtonLine).Equals(""))
             {
                 System.Windows.Forms.MessageBox.Show("Make sure to choose the folder containing your memes\nand the overlay button"
                     , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                AppSetup.getInstance().FilterMemeFiles();
-                if(AppSetup.getInstance().filteredMemeFiles.Count == 0)
+                AppSetup.GetInstance().FilterMemeFiles();
+                if(AppSetup.GetInstance().filteredMemeFiles.Count == 0)
                 {
                     System.Windows.Forms.MessageBox.Show("The selected folder meme does not contain any valid memes" +
                         "\nSupported Extensions: .mp3,.aac,.wav,.webm,.m4a,.mp4,.mkv"
@@ -31,7 +31,7 @@ namespace MemeMic
                 }
                 else
                 {
-                    TrayIcon.getInstance().Show();
+                    TrayIcon.GetInstance().Show();
                     isClosedNotExited = true;
                     EventListener listener = new EventListener();
                     listener.CaptureMouseEvent();
@@ -62,7 +62,7 @@ namespace MemeMic
             if(isFolderSelected)
             {
                 DirectoryTextBox.Text = folderDialog.SelectedPath;
-                AppSetup.getInstance().ModifyFolderPath(folderDialog.SelectedPath);
+                AppSetup.GetInstance().ModifyFolderPath(folderDialog.SelectedPath);
             }
             else
             {

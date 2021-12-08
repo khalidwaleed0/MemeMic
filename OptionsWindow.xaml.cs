@@ -28,9 +28,9 @@ namespace MemeMic
         }
         private void displayLatestSettings()
         {
-            ShowOverlayTextBox.Text = AppSetup.getInstance().ReadSettingsFile(AppSetup.overlayButtonLine);
-            PlayMemeTextBox.Text = AppSetup.getInstance().ReadSettingsFile(AppSetup.overlayButtonLine);
-            double speakerVolume = 100*double.Parse(AppSetup.getInstance().ReadSettingsFile(AppSetup.speakerVolumeLine));
+            ShowOverlayTextBox.Text = AppSetup.GetInstance().ReadSettingsFile(AppSetup.overlayButtonLine);
+            PlayMemeTextBox.Text = AppSetup.GetInstance().ReadSettingsFile(AppSetup.overlayButtonLine);
+            double speakerVolume = 100*double.Parse(AppSetup.GetInstance().ReadSettingsFile(AppSetup.speakerVolumeLine));
             volumeTextBlock.Text = speakerVolume.ToString();
             volumeSlider.Value = speakerVolume;
         }
@@ -75,7 +75,7 @@ namespace MemeMic
                     MessageBoxIcon.Error);
             }
             else
-                AppSetup.getInstance().ModifyOptions(ShowOverlayTextBox.Text,Convert.ToString(volumeSlider.Value/100),
+                AppSetup.GetInstance().ModifyOptions(ShowOverlayTextBox.Text,Convert.ToString(volumeSlider.Value/100),
                     screenComboBox.SelectedIndex.ToString());
         }
 

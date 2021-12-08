@@ -17,7 +17,7 @@ namespace MemeMic
         private readonly string directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Local\MemeMic";
         public string settingsFilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Local\MemeMic\settings.txt";
         
-        public static AppSetup getInstance()
+        public static AppSetup GetInstance()
         {
             if (appSetup == null)
                 appSetup = new AppSetup();
