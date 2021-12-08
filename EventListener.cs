@@ -138,9 +138,7 @@ namespace MemeMic
         }
         ~EventListener()
         {
-            keyboardWatcher.Stop();
-            mouseWatcher.Stop();
-            eventHookFactory.Dispose();
+            CloseListener();
         }
     }
 }
