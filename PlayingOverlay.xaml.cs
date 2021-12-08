@@ -11,7 +11,7 @@ namespace MemeMic
             try
             {
                 var secondaryScreen = System.Windows.Forms.Screen.AllScreens
-                    [Convert.ToInt32(AppSetup.getInstance().readSettingsFile(AppSetup.screenNumberLine))];
+                    [Convert.ToInt32(AppSetup.getInstance().ReadSettingsFile(AppSetup.screenNumberLine))];
                 var workingArea = secondaryScreen.WorkingArea;
                 Left = workingArea.Left;
                 Top = workingArea.Top;

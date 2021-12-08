@@ -7,9 +7,9 @@ namespace MemeMic
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            AppSetup.getInstance().checkDirectory();
-            AppSetup.getInstance().checkSettingsFile();
-            if(AppSetup.getInstance().getVirtualSpeakerNumber() != -2)
+            AppSetup.getInstance().CheckDirectory();
+            AppSetup.getInstance().CheckSettingsFile();
+            if(AppSetup.getInstance().GetVirtualSpeakerNumber() != -2)
             {
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();

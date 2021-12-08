@@ -14,7 +14,7 @@ namespace MemeMic
         public const byte overlayButtonLine = 1;
         public const byte speakerVolumeLine = 2;
         public const byte screenNumberLine = 3;
-        private string directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Local\MemeMic";
+        private readonly string directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Local\MemeMic";
         public string settingsFilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Local\MemeMic\settings.txt";
         
         public static AppSetup getInstance()
@@ -24,23 +24,23 @@ namespace MemeMic
             return appSetup;
         }
         
-        public void checkDirectory()
+        public void CheckDirectory()
         {
             if (!Directory.Exists(directoryPath))
                 Directory.CreateDirectory(directoryPath);
         }
-        public void checkSettingsFile()
+        public void CheckSettingsFile()
         {
             if (!File.Exists(settingsFilePath))
-                createSettingsFile();
+                CreateSettingsFile();
         }
-        public void createSettingsFile(string path = "", string overlayButton = "", string speakerVolume = "0.3",string screenNumber = "0")
+        public void CreateSettingsFile(string path = "", string overlayButton = "", string speakerVolume = "0.3",string screenNumber = "0")
         {
             TextWriter writer = new StreamWriter(settingsFilePath);
             writer.WriteLine(path + "," + overlayButton + "," + speakerVolume + "," + screenNumber);
             writer.Close();
         }
-        public string readSettingsFile(byte lineNumber)
+        public string ReadSettingsFile(byte lineNumber)
         {
             TextReader reader = new StreamReader(settingsFilePath);
             string settingsLine = reader.ReadLine();
@@ -48,25 +48,25 @@ namespace MemeMic
             string[] separatedLines = settingsLine.Split(',');
             return separatedLines[lineNumber];
         }
-        public void modifyFolderPath(string newPath)
+        public void ModifyFolderPath(string newPath)
         {
-            createSettingsFile(newPath, readSettingsFile(overlayButtonLine), readSettingsFile(speakerVolumeLine)
-                ,readSettingsFile(screenNumberLine));
+            CreateSettingsFile(newPath, ReadSettingsFile(overlayButtonLine), ReadSettingsFile(speakerVolumeLine)
+                ,ReadSettingsFile(screenNumberLine));
         }
-        public void modifyOptions(string overlayButton, string speakerVolume, string screenNumber)
+        public void ModifyOptions(string overlayButton, string speakerVolume, string screenNumber)
         {
-            createSettingsFile(readSettingsFile(pathLine), overlayButton, speakerVolume, screenNumber);
+            CreateSettingsFile(ReadSettingsFile(pathLine), overlayButton, speakerVolume, screenNumber);
         }
-        public void filterMemeFiles()
+        public void FilterMemeFiles()
         {
             string supportedExtensions = "*.mp3,*.aac,*.wav,*.webm,*.m4a,*.mp4,*.mkv";
-            string[] memeFiles = Directory.GetFiles(readSettingsFile(pathLine));
+            string[] memeFiles = Directory.GetFiles(ReadSettingsFile(pathLine));
             foreach (string supportedMemeFile in memeFiles.Where(s => supportedExtensions.Contains(Path.GetExtension(s).ToLower())))
             {
                 filteredMemeFiles.Add(supportedMemeFile);
             }
         }
-        public int getVirtualSpeakerNumber()
+        public int GetVirtualSpeakerNumber()
         {                         // -1 refers to the "Audio Mapper" and values starting from 0 refer to the devices you have
             int vbSpeaker = -2;   // so I used -2 so that it means the virtual speaker doesn't exist
             for (int i = 0; i < WaveOut.DeviceCount; i++)

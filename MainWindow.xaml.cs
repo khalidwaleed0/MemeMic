@@ -9,20 +9,20 @@ namespace MemeMic
         public MainWindow()
         {
             InitializeComponent();
-            DirectoryTextBox.Text = AppSetup.getInstance().readSettingsFile(AppSetup.pathLine);
+            DirectoryTextBox.Text = AppSetup.getInstance().ReadSettingsFile(AppSetup.pathLine);
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            if (AppSetup.getInstance().readSettingsFile(AppSetup.pathLine).Equals("") ||
-                AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine).Equals(""))
+            if (AppSetup.getInstance().ReadSettingsFile(AppSetup.pathLine).Equals("") ||
+                AppSetup.getInstance().ReadSettingsFile(AppSetup.overlayButtonLine).Equals(""))
             {
                 System.Windows.Forms.MessageBox.Show("Make sure to choose the folder containing your memes\nand the overlay button"
                     , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                AppSetup.getInstance().filterMemeFiles();
+                AppSetup.getInstance().FilterMemeFiles();
                 if(AppSetup.getInstance().filteredMemeFiles.Count == 0)
                 {
                     System.Windows.Forms.MessageBox.Show("The selected folder meme does not contain any valid memes" +
@@ -62,7 +62,7 @@ namespace MemeMic
             if(isFolderSelected)
             {
                 DirectoryTextBox.Text = folderDialog.SelectedPath;
-                AppSetup.getInstance().modifyFolderPath(folderDialog.SelectedPath);
+                AppSetup.getInstance().ModifyFolderPath(folderDialog.SelectedPath);
             }
             else
             {

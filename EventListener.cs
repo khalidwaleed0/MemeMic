@@ -17,7 +17,7 @@ namespace MemeMic
         private int memeIndex = 0;
         public void CaptureKeyboardEvent()
         {
-            string savedButton = AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine);
+            string savedButton = AppSetup.getInstance().ReadSettingsFile(AppSetup.overlayButtonLine);
             keyboardWatcher = eventHookFactory.GetKeyboardWatcher();
             keyboardWatcher.Start();
             keyboardWatcher.OnKeyInput += (s, e) =>
@@ -28,7 +28,7 @@ namespace MemeMic
         }
         public void CaptureMouseEvent()
         {
-            string savedButton = AppSetup.getInstance().readSettingsFile(AppSetup.overlayButtonLine);
+            string savedButton = AppSetup.getInstance().ReadSettingsFile(AppSetup.overlayButtonLine);
             string correctMouseData = "";
             string correctMouseButton = "";
             const string mouseWheelUpData = "7864320";
