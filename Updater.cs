@@ -20,7 +20,7 @@ namespace MemeMic
             var context = BrowsingContext.New(config);
             var document = await context.OpenAsync(req => req.Content(source));
             var element = document.QuerySelector("h1 .Link--primary");
-            string latestReleaseName = element.TextContent;
+            string latestReleaseName = element.TextContent.Trim();
             if (!latestReleaseName.Equals("v1.1"))
             {
                 Application.Current.Dispatcher.Invoke(() =>{
