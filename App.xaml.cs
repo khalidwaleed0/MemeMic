@@ -13,11 +13,11 @@ namespace MemeMic
             {
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
-                UpdateWindow updateWindow = new UpdateWindow();
-                Updater updater = new Updater(updateWindow);
-                Thread updateThread = new Thread(() => { updater.update(); });
-                updateThread.Start();
-                updateWindow.ShowDialog();
+                //UpdateWindow updateWindow = new UpdateWindow();
+                //Updater updater = new Updater(updateWindow);
+                //Thread updateThread = new Thread(() => { updater.update(); });
+                //updateThread.Start();
+                //updateWindow.ShowDialog();
             }
             else
             {
