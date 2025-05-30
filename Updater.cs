@@ -21,15 +21,16 @@ namespace MemeMic
                 var config = Configuration.Default;
                 var context = BrowsingContext.New(config);
                 var document = await context.OpenAsync(req => req.Content(source));
-                var element = document.QuerySelector("h1 .Link--primary");
+                var element = document.QuerySelector("a.Link--primary");
                 string latestReleaseName = element.TextContent.Trim();
                 if (!latestReleaseName.Equals("v1.1.1"))
                 {
                     Application.Current.Dispatcher.Invoke(() => {
                         updateWindow.firstTextBlock.Text = "Downloading latest version...";
                     });
-                    var latestReleaseElement = document.QuerySelector(".Box.Box--condensed.mt-3 a");
-                    string latestReleaseLink = "https://github.com/" + latestReleaseElement.GetAttribute("href");
+                    var latestReleaseElement = document.QuerySelector("a[href*=MemeMic]");
+                    string latestReleaseLink = "https://github.com" + latestReleaseElement.GetAttribute("href");
+                    MessageBox.Show(latestReleaseLink);
                     download(latestReleaseLink);
                     try
                     {

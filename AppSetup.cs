@@ -59,7 +59,7 @@ namespace MemeMic
         }
         public void FilterMemeFiles()
         {
-            string supportedExtensions = "*.mp3,*.aac,*.wav,*.webm,*.m4a,*.mp4,*.mkv";
+            string supportedExtensions = "*.mp3,*.aac,*.wav,*.webm,*.m4a,*.mp4,*.mkv,*.mpeg,*.flv";
             string[] memeFiles = Directory.GetFiles(ReadSettingsFile(pathLine));
             foreach (string supportedMemeFile in memeFiles.Where(s => supportedExtensions.Contains(Path.GetExtension(s).ToLower())))
             {

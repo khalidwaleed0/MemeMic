@@ -13,24 +13,20 @@
        Khalid Waleed
     </Hyperlink>
         </TextBlock>
-        <TextBlock Margin="32,119,375,121.8">           
+        <TextBlock Margin="33,94,374,147">           
     <Hyperlink NavigateUri="https://github.com/khaled1000emad" RequestNavigate="Hyperlink_RequestNavigate_1">
        Khalid Emad
     </Hyperlink>
         </TextBlock>
-        <TextBlock Margin="32,86,375,154.8">           
-    <Hyperlink NavigateUri="https://github.com/Hossam-Abdin/?fbclid=IwAR0qdcjPA31DR6HwnEuhHGKLuDXHinKIFxdPZusjACKt6UH9dsmcbGBS85A" RequestNavigate="Hyperlink_RequestNavigate_2">
-       Hossam Abdin
-    </Hyperlink>
+        <TextBlock Margin="32,86,375,154.8">
         </TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="133,56,0,0" TextWrapping="Wrap" Text="-  khalidwaleed0@outlook.com" VerticalAlignment="Top" FontWeight="Bold"/>
-        <TextBlock HorizontalAlignment="Left" Margin="133,119,0,0" TextWrapping="Wrap" Text="-  kemad951@gmail.com" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="133,94,0,0" TextWrapping="Wrap" Text="-  kemad951@gmail.com" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBlock HorizontalAlignment="Left" Margin="25,155,0,0" TextWrapping="Wrap" Text="Github Link :" VerticalAlignment="Top" FontFamily="Source Serif Pro Black" FontSize="22"/>
         <TextBlock Margin="49,193,358,47.8">           
-    <Hyperlink NavigateUri="https://github.com/khalidwaleed0/MemeMic?fbclid=IwAR0mg7GjN9RctHH8ovQpwS3FsVYtFhArNOPONWnoqTgJxGMnOk5VS_yNG7A" RequestNavigate="Hyperlink_RequestNavigate">
+    <Hyperlink NavigateUri="https://github.com/khalidwaleed0/MemeMic" RequestNavigate="Hyperlink_RequestNavigate">
        MemeMic 
     </Hyperlink>
         </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="133,88,0,0" TextWrapping="Wrap" Text="-  hossamabdeen17@gmail.com" VerticalAlignment="Top" FontWeight="Bold"/>
     </Grid>
 </Window>
