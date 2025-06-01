@@ -23,7 +23,7 @@ namespace MemeMic
                 var document = await context.OpenAsync(req => req.Content(source));
                 var element = document.QuerySelector("a.Link--primary");
                 string latestReleaseName = element.TextContent.Trim();
-                if (!latestReleaseName.Equals("v1.1.1"))
+                if (!latestReleaseName.Equals("v1.1.2"))
                 {
                     Application.Current.Dispatcher.Invoke(() => {
                         updateWindow.firstTextBlock.Text = "Downloading latest version...";
