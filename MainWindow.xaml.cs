@@ -33,9 +33,8 @@ namespace MemeMic
                 {
                     TrayIcon.GetInstance().Show();
                     isClosedNotExited = true;
-                    EventListener listener = new EventListener();
-                    listener.CaptureMouseEvent();
-                    listener.CaptureKeyboardEvent();
+                    EventListener.StartMouseCapture();
+                    EventListener.StartKeyboardCapture();
                     Close();
                 }
             }

@@ -4,18 +4,70 @@ using EventHook;
 
 namespace MemeMic
 {
-    class EventListener : Control
+    public class EventListener : Control
     {
-        public EventHookFactory eventHookFactory = new EventHookFactory();
-        public KeyboardWatcher keyboardWatcher;
-        public MouseWatcher mouseWatcher;
+        private static EventListener _instance;
+        private static readonly object _lock = new object();
+
+        public static EventListener Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (_lock)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new EventListener();
+                        }
+                    }
+                }
+                return _instance;
+            }
+        }
+
+        private EventHookFactory eventHookFactory;
+        private KeyboardWatcher keyboardWatcher;
+        private MouseWatcher mouseWatcher;
         private string overlayState = "Hidden";
-        private readonly OverlayWindow overlay = new OverlayWindow();
-        private static readonly PlayingOverlay playingOverlay = new PlayingOverlay();
-        private readonly MicPlayer micPlayer = new MicPlayer(playingOverlay);
-        private SpeakerPlayer speakerPlayer = new SpeakerPlayer();
+        private readonly OverlayWindow overlay;
+        private static readonly PlayingOverlay playingOverlay;
+        private readonly MicPlayer micPlayer;
+        private SpeakerPlayer speakerPlayer;
         private int memeIndex = 0;
-        public void CaptureKeyboardEvent()
+
+        private EventListener()
+        {
+            eventHookFactory = new EventHookFactory();
+            overlay = new OverlayWindow();
+            micPlayer = new MicPlayer(playingOverlay);
+            speakerPlayer = new SpeakerPlayer();
+        }
+
+        static EventListener()
+        {
+            playingOverlay = new PlayingOverlay();
+        }
+
+        // Static methods for public access
+        public static void StartKeyboardCapture()
+        {
+            Instance.CaptureKeyboardEvent();
+        }
+
+        public static void StartMouseCapture()
+        {
+            Instance.CaptureMouseEvent();
+        }
+
+        public static void Stop()
+        {
+            Instance.CloseListener();
+        }
+
+        // Private instance methods
+        private void CaptureKeyboardEvent()
         {
             string savedButton = AppSetup.GetInstance().ReadSettingsFile(AppSetup.overlayButtonLine);
             keyboardWatcher = eventHookFactory.GetKeyboardWatcher();
@@ -26,7 +78,8 @@ namespace MemeMic
                     ChangeOverlayState();
             };
         }
-        public void CaptureMouseEvent()
+
+        private void CaptureMouseEvent()
         {
             string savedButton = AppSetup.GetInstance().ReadSettingsFile(AppSetup.overlayButtonLine);
             string correctMouseData = "";
@@ -74,6 +127,7 @@ namespace MemeMic
                     break;
             }
         }
+
         private void ChangeOverlayState()
         {
             switch (overlayState)
@@ -106,6 +160,7 @@ namespace MemeMic
                     break;
             }
         }
+
         private void ScrollDown()
         {
             if (memeIndex != (AppSetup.GetInstance().filteredMemeFiles.Count - 1))
@@ -118,6 +173,7 @@ namespace MemeMic
                 });
             }
         }
+
         private void ScrollUp()
         {
             if (memeIndex != 0)
@@ -130,12 +186,14 @@ namespace MemeMic
                 });
             }
         }
-        public void CloseListener()
+
+        private void CloseListener()
         {
-            keyboardWatcher.Stop();
-            mouseWatcher.Stop();
-            eventHookFactory.Dispose();
+            keyboardWatcher?.Stop();
+            mouseWatcher?.Stop();
+            eventHookFactory?.Dispose();
         }
+
         ~EventListener()
         {
             CloseListener();
