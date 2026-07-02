@@ -1,39 +1,38 @@
-﻿using NAudio.Wave;
+using NAudio.Wave;
 using System;
-using System.Threading;
-using System.Windows;
 
 namespace MemeMic
 {
     class MicPlayer
     {
-        WaveOutEvent micPlayer = new WaveOutEvent();
-        PlayingOverlay playingOverlay;
+        readonly WaveOutEvent micPlayer = new WaveOutEvent();
+        MediaFoundationReader reader;
+        readonly Action onStopped;
 
-        public MicPlayer(PlayingOverlay playingOverlay)
+        public MicPlayer(Action onStopped)
         {
+            this.onStopped = onStopped;
             micPlayer.DeviceNumber = AppSetup.GetInstance().GetVirtualSpeakerNumber();
-            micPlayer.PlaybackStopped += Player_PlaybackStopped;
-            this.playingOverlay = playingOverlay;
+            micPlayer.PlaybackStopped += OnPlaybackStopped;
         }
 
         public void play(string path)
         {
-            MediaFoundationReader reader = new MediaFoundationReader(path);
-            micPlayer.Init(reader); 
+            reader = new MediaFoundationReader(path);
+            micPlayer.Init(reader);   // must run on the UI thread so PlaybackStopped comes back on it
             micPlayer.Play();
         }
 
-        private void Player_PlaybackStopped(object sender, StoppedEventArgs e)
-        {                                                       // It only needs to be added either in this class or
-            Application.Current.Dispatcher.Invoke(() => {       // SpeakerPlayer class and same goes for the playingOverlay
-                playingOverlay.Hide();
-            });
+        private void OnPlaybackStopped(object sender, StoppedEventArgs e)
+        {
+            reader?.Dispose();        // release the file here, after playback has fully stopped
+            reader = null;
+            onStopped?.Invoke();
         }
 
         public void stop()
         {
-            micPlayer.Dispose();
+            micPlayer.Stop();         // reader is disposed in OnPlaybackStopped; device is reused, never disposed
         }
     }
 }
