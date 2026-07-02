@@ -36,17 +36,16 @@ namespace MemeMic
         }
         public void CreateSettingsFile(string path = "", string overlayButton = "", string speakerVolume = "0.3",string screenNumber = "0")
         {
-            TextWriter writer = new StreamWriter(settingsFilePath);
-            writer.WriteLine(path + "," + overlayButton + "," + speakerVolume + "," + screenNumber);
-            writer.Close();
+            // One value per line so a comma in the meme folder path (or a locale-formatted number) can't corrupt the file.
+            File.WriteAllLines(settingsFilePath, new[] { path, overlayButton, speakerVolume, screenNumber });
         }
         public string ReadSettingsFile(byte lineNumber)
         {
-            TextReader reader = new StreamReader(settingsFilePath);
-            string settingsLine = reader.ReadLine();
-            reader.Close();
-            string[] separatedLines = settingsLine.Split(',');
-            return separatedLines[lineNumber];
+            string[] lines = File.ReadAllLines(settingsFilePath);
+            // Migrate the legacy single comma-joined line to the per-line format.
+            if (lines.Length == 1 && lines[0].Contains(","))
+                lines = lines[0].Split(',');
+            return lineNumber < lines.Length ? lines[lineNumber] : "";
         }
         public void ModifyFolderPath(string newPath)
         {
@@ -59,7 +58,9 @@ namespace MemeMic
         }
         public void FilterMemeFiles()
         {
-            string supportedExtensions = "*.mp3,*.aac,*.wav,*.webm,*.m4a,*.mp4,*.mkv,*.mpeg,*.flv";
+            var supportedExtensions = new HashSet<string>
+            { ".mp3", ".aac", ".wav", ".webm", ".m4a", ".mp4", ".mkv", ".mpeg", ".flv" };
+            filteredMemeFiles.Clear();   // don't accumulate duplicates if the user presses Start more than once
             string[] memeFiles = Directory.GetFiles(ReadSettingsFile(pathLine));
             foreach (string supportedMemeFile in memeFiles.Where(s => supportedExtensions.Contains(Path.GetExtension(s).ToLower())))
             {

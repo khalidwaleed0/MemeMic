@@ -1,4 +1,5 @@
-﻿using System.Windows.Threading;
+using System;
+using System.Windows.Threading;
 using System.Windows.Controls;
 using EventHook;
 
@@ -41,7 +42,7 @@ namespace MemeMic
         {
             eventHookFactory = new EventHookFactory();
             overlay = new OverlayWindow();
-            micPlayer = new MicPlayer(playingOverlay);
+            micPlayer = new MicPlayer(OnPlaybackFinished);
             speakerPlayer = new SpeakerPlayer();
         }
 
@@ -74,8 +75,10 @@ namespace MemeMic
             keyboardWatcher.Start();
             keyboardWatcher.OnKeyInput += (s, e) =>
             {
+                // Hook callbacks run on a background thread; do only the cheap match here,
+                // then hand the actual work to the UI thread (which also serializes it).
                 if(e.KeyData.Keyname.ToString().Equals(savedButton) && e.KeyData.EventType.ToString().Equals("down"))
-                    ChangeOverlayState();
+                    Dispatcher.BeginInvoke(new Action(ChangeOverlayState));
             };
         }
 
@@ -93,21 +96,17 @@ namespace MemeMic
             {
                 string mouseInputName = e.Message.ToString();
                 string mouseInputData = e.MouseData.ToString();
-                if(overlayState.Equals("Shown"))
-                {
-                    if (mouseInputData.Equals(mouseWheelDownData))
-                        ScrollDown();
-                    else if (mouseInputData.Equals(mouseWheelUpData))
-                        ScrollUp();
-                }
 
-                if (savedButton.Contains("XButton"))
-                {
-                    if (mouseInputData.Equals(correctMouseData) && mouseInputName.Contains("DOWN"))
-                        ChangeOverlayState();
-                }
-                else if(mouseInputName.Equals(correctMouseButton))
-                        ChangeOverlayState();
+                if (mouseInputData.Equals(mouseWheelDownData))
+                    Dispatcher.BeginInvoke(new Action(ScrollDown));
+                else if (mouseInputData.Equals(mouseWheelUpData))
+                    Dispatcher.BeginInvoke(new Action(ScrollUp));
+
+                bool triggerPressed = savedButton.Contains("XButton")
+                    ? (mouseInputData.Equals(correctMouseData) && mouseInputName.Contains("DOWN"))
+                    : mouseInputName.Equals(correctMouseButton);
+                if (triggerPressed)
+                    Dispatcher.BeginInvoke(new Action(ChangeOverlayState));
             };
         }
 
@@ -128,62 +127,71 @@ namespace MemeMic
             }
         }
 
+        // Everything below runs on the UI thread (marshalled from the hook callbacks),
+        // so state transitions can't interleave and it is safe to touch the windows directly.
         private void ChangeOverlayState()
         {
             switch (overlayState)
             {
                 case "Hidden":
-                    Dispatcher.Invoke(() => { 
-                        overlay.Show();
-                        overlay.HighlightText(0);
-                    });
-                    overlayState = "Shown";
+                    overlay.Show();
+                    overlay.HighlightText(0);
                     memeIndex = 0;
+                    overlayState = "Shown";
                     break;
                 case "Shown":
+                    overlay.UnhighlightText(memeIndex);
+                    overlay.Hide();
+                    playingOverlay.Show();
                     micPlayer.play(AppSetup.GetInstance().filteredMemeFiles[memeIndex]);
                     speakerPlayer.Play(AppSetup.GetInstance().filteredMemeFiles[memeIndex]);
-                    Dispatcher.Invoke(() => {
-                        overlay.UnhighlightText(memeIndex);
-                        overlay.Hide();
-                        playingOverlay.Show();
-                    });
                     overlayState = "Playing";
                     break;
                 case "Playing":
                     micPlayer.stop();
                     speakerPlayer.Stop();
-                    Dispatcher.Invoke(() => {
-                        playingOverlay.Hide();
-                    });
+                    playingOverlay.Hide();
                     overlayState = "Hidden";
                     break;
             }
         }
 
+        // Called (via MicPlayer) when a clip stops, including reaching its own end.
+        private void OnPlaybackFinished()
+        {
+            if (!Dispatcher.CheckAccess())
+            {
+                Dispatcher.BeginInvoke(new Action(OnPlaybackFinished));
+                return;
+            }
+            if (overlayState.Equals("Playing"))
+            {
+                playingOverlay.Hide();
+                overlayState = "Hidden";
+            }
+        }
+
         private void ScrollDown()
         {
+            if (!overlayState.Equals("Shown"))
+                return;
             if (memeIndex != (AppSetup.GetInstance().filteredMemeFiles.Count - 1))
             {
                 memeIndex++;
-                Dispatcher.Invoke(() =>
-                {
-                    overlay.UnhighlightText(memeIndex - 1);
-                    overlay.HighlightText(memeIndex);
-                });
+                overlay.UnhighlightText(memeIndex - 1);
+                overlay.HighlightText(memeIndex);
             }
         }
 
         private void ScrollUp()
         {
+            if (!overlayState.Equals("Shown"))
+                return;
             if (memeIndex != 0)
             {
                 memeIndex--;
-                Dispatcher.Invoke(() =>
-                {
-                    overlay.UnhighlightText(memeIndex + 1);
-                    overlay.HighlightText(memeIndex);
-                });
+                overlay.UnhighlightText(memeIndex + 1);
+                overlay.HighlightText(memeIndex);
             }
         }
 

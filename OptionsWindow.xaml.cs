@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -30,7 +31,8 @@ namespace MemeMic
         {
             ShowOverlayTextBox.Text = AppSetup.GetInstance().ReadSettingsFile(AppSetup.overlayButtonLine);
             PlayMemeTextBox.Text = AppSetup.GetInstance().ReadSettingsFile(AppSetup.overlayButtonLine);
-            double speakerVolume = 100*double.Parse(AppSetup.GetInstance().ReadSettingsFile(AppSetup.speakerVolumeLine));
+            double speakerVolume = 100*double.Parse(AppSetup.GetInstance().ReadSettingsFile(AppSetup.speakerVolumeLine),
+                CultureInfo.InvariantCulture);
             volumeTextBlock.Text = speakerVolume.ToString();
             volumeSlider.Value = speakerVolume;
         }
@@ -75,7 +77,8 @@ namespace MemeMic
                     MessageBoxIcon.Error);
             }
             else
-                AppSetup.GetInstance().ModifyOptions(ShowOverlayTextBox.Text,Convert.ToString(volumeSlider.Value/100),
+                AppSetup.GetInstance().ModifyOptions(ShowOverlayTextBox.Text,
+                    (volumeSlider.Value/100).ToString(CultureInfo.InvariantCulture),
                     screenComboBox.SelectedIndex.ToString());
         }
 
